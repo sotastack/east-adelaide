@@ -692,6 +692,198 @@
     display: inline-flex; align-items: center; gap: 8px;
   }
   .replay-intro:hover { border-color: var(--copper); color: var(--ink); }
+
+  /* ============ MOBILE NAV TOGGLE ============ */
+  .nav-toggle {
+    display: none;
+    width: 32px; height: 32px;
+    background: transparent;
+    border: none;
+    position: relative;
+    padding: 0;
+  }
+  .nav-toggle span {
+    display: block;
+    position: absolute; left: 5px;
+    width: 22px; height: 1.5px;
+    background: var(--ink);
+    transition: transform 0.3s cubic-bezier(0.76, 0, 0.24, 1), opacity 0.2s, top 0.3s;
+  }
+  .nav-toggle span:nth-child(1) { top: 10px; }
+  .nav-toggle span:nth-child(2) { top: 16px; }
+  .nav-toggle span:nth-child(3) { top: 22px; }
+  .nav-toggle.is-open span:nth-child(1) { top: 16px; transform: rotate(45deg); }
+  .nav-toggle.is-open span:nth-child(2) { opacity: 0; }
+  .nav-toggle.is-open span:nth-child(3) { top: 16px; transform: rotate(-45deg); }
+
+  /* Mobile menu overlay */
+  .mobile-menu {
+    position: fixed; inset: 0; z-index: 38;
+    background: var(--paper);
+    opacity: 0; visibility: hidden;
+    transform: translateY(-12px);
+    transition: opacity 0.4s cubic-bezier(0.76, 0, 0.24, 1), transform 0.4s cubic-bezier(0.76, 0, 0.24, 1), visibility 0.4s;
+    display: flex; flex-direction: column; justify-content: space-between;
+    padding: 96px 28px 48px;
+    overflow-y: auto;
+  }
+  .mobile-menu.is-open {
+    opacity: 1; visibility: visible; transform: translateY(0);
+  }
+  .mm-links { list-style: none; display: flex; flex-direction: column; margin-top: 16px; }
+  .mm-links li { border-bottom: 1px solid var(--hair-light); }
+  .mm-links li:first-child { border-top: 1px solid var(--hair-light); }
+  .mm-links a {
+    font-family: var(--display);
+    font-weight: 360;
+    font-variation-settings: "opsz" 72, "SOFT" 30;
+    font-size: clamp(36px, 9vw, 56px);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    padding: 22px 0;
+    display: block;
+    position: relative;
+  }
+  .mm-links a::after {
+    content: "→";
+    position: absolute; right: 0; top: 50%;
+    transform: translateY(-50%);
+    font-family: var(--sans); font-size: 18px;
+    color: var(--copper);
+    opacity: 0.6;
+  }
+  .mm-extras {
+    margin-top: 40px;
+    display: flex; flex-direction: column; gap: 22px;
+  }
+  .mm-investors {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 22px;
+    border: 1px solid var(--hair-dark);
+    color: var(--ink);
+    font-family: var(--mono);
+    font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+  }
+  .mm-investors span { color: var(--copper); }
+  .mm-lang {
+    display: flex; justify-content: center; gap: 14px;
+    font-family: var(--mono); font-size: 11px;
+    letter-spacing: 0.22em; color: var(--stone);
+  }
+  .mm-lang span:first-child { color: var(--ink); }
+  .mm-lang em { color: var(--hair-light); font-style: normal; }
+  .mm-replay {
+    background: transparent;
+    border: 1px solid var(--hair-light);
+    padding: 10px 14px;
+    font-family: var(--mono); font-size: 10px;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--stone);
+    align-self: center;
+  }
+
+  /* ============ MOBILE OVERRIDES ============ */
+  @media (max-width: 1100px) {
+    .nav-toggle { display: block; }
+    .nav-right { display: none; }
+  }
+
+  @media (max-width: 900px) {
+    nav.top .row { padding: 16px 0; }
+    .wordmark { gap: 12px; }
+    .wordmark .name { font-size: 16px; }
+    .wordmark .sub { font-size: 8px; letter-spacing: 0.18em; }
+    .monogram { width: 36px; height: 36px; }
+
+    /* Hero — tighter type, more breathing room */
+    section.hero { padding: 64px 0 0; }
+    .hero-grid { gap: 32px; min-height: auto; }
+    .hero-text { padding-bottom: 40px; }
+    .hero-text .eyebrow { margin-bottom: 28px; }
+    .hero-text h1 {
+      font-size: clamp(40px, 9.5vw, 84px);
+      margin-bottom: 22px;
+    }
+    .hero-rule { margin-bottom: 20px; }
+    .hero-text .lede { font-size: 16px; line-height: 1.5; }
+    .hero-figure { height: 60vh; min-height: 320px; }
+    .frame-caption {
+      bottom: 14px; left: 14px; right: 14px;
+      font-size: 9px;
+      gap: 12px;
+    }
+
+    /* Metrics */
+    .metrics { margin-top: 56px; }
+    .metric { padding: 28px 22px; gap: 10px; }
+    .metric .value { font-size: 42px; }
+    .metric .value .unit { font-size: 16px; top: 6px; }
+    .metric .meta { font-size: 12px; }
+
+    /* Section padding */
+    .pillars { padding: 80px 0 60px; }
+    .maisons { padding: 80px 0; }
+    .research { padding: 100px 0 80px; }
+    .investor { padding: 80px 0; }
+    .insights { padding: 80px 0; }
+    .cta-strip { padding: 80px 0; }
+    footer { padding: 64px 0 28px; }
+
+    .section-head { margin-bottom: 48px; gap: 20px; }
+    .section-head h2 { font-size: clamp(32px, 7vw, 56px); }
+
+    .pillar-pair { gap: 56px; }
+    .pillar h3 { font-size: clamp(22px, 5.5vw, 32px); margin: 8px 0 16px; }
+    .pillar p { font-size: 15px; }
+    .subsidiary-list li { padding: 14px 0; font-size: 14px; }
+
+    .maison { padding: 28px 22px 32px; min-height: 280px; }
+    .maison .name { font-size: 24px; }
+    .maison .desc { font-size: 13px; }
+    .maison .arrow-wrap { bottom: 28px; right: 22px; }
+
+    .research-grid { gap: 36px; }
+    .research-text h2 { font-size: clamp(36px, 8vw, 72px); margin-bottom: 28px; }
+    .research-text .body-copy { font-size: 15px; }
+    .research-partners { gap: 24px; margin-top: 36px; padding-top: 22px; flex-wrap: wrap; }
+    .partner-list { gap: 28px; font-size: 17px; flex-wrap: wrap; }
+    .research-stats { margin-top: 56px; }
+    .research-stat { padding: 28px 22px 0; }
+    .research-stat .v { font-size: 52px; }
+
+    .investor-left h2 { font-size: clamp(28px, 6.5vw, 48px); }
+    .investor-row .div-name { font-size: 19px; }
+    .investor-row .rev { font-size: 28px; }
+    .investor-row.total .rev { font-size: 38px; }
+
+    .insights-head { flex-direction: column; align-items: flex-start; gap: 16px; }
+    .insights-head h2 { font-size: clamp(28px, 7vw, 52px); }
+
+    .cta-grid h2 { font-size: clamp(32px, 8vw, 64px); }
+    .cta-grid .right a { padding: 16px 18px; font-size: 12px; }
+
+    footer .footer-grid { gap: 32px; }
+    .footer-col h4 { margin-bottom: 16px; }
+    .footer-bottom { flex-direction: column; gap: 18px; align-items: flex-start; }
+    .footer-bottom .links { flex-wrap: wrap; gap: 16px 24px; }
+  }
+
+  /* Curtain on mobile */
+  @media (max-width: 700px) {
+    .curtain { padding: 24px; }
+    .curtain-eyebrow { margin-bottom: 36px; font-size: 9px; letter-spacing: 0.28em; }
+    .curtain-mono {
+      width: clamp(110px, 32vw, 160px);
+      height: clamp(110px, 32vw, 160px);
+      border-radius: 18px;
+      margin-bottom: 24px;
+    }
+    .curtain-name { font-size: 18px; margin-bottom: 14px; }
+    .curtain-rule { width: 48px; }
+    .curtain-tagline { font-size: 16px; max-width: 28ch; }
+    .curtain-foot { bottom: 24px; padding: 0 24px; font-size: 9px; gap: 12px; }
+  }
 </style>
 </head>
 <body class="curtain-active">
@@ -738,9 +930,27 @@
         <div class="lang"><span>EN</span><em>/</em><span>中文</span></div>
         <a href="#" class="investor-link" data-link data-label="Enter">Investors</a>
       </div>
+      <button type="button" class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </div>
 </nav>
+
+<!-- ============ MOBILE MENU OVERLAY ============ -->
+<aside class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <ul class="mm-links">
+    <li><a href="#" data-mm-close>About</a></li>
+    <li><a href="#" data-mm-close>Businesses</a></li>
+    <li><a href="#" data-mm-close>Insights</a></li>
+    <li><a href="#" data-mm-close>Careers</a></li>
+  </ul>
+  <div class="mm-extras">
+    <a href="#" class="mm-investors" data-mm-close>Investors <span>→</span></a>
+    <div class="mm-lang"><span>EN</span><em>/</em><span>中文</span></div>
+    <button type="button" class="mm-replay" data-mm-replay>Replay Intro</button>
+  </div>
+</aside>
 
 <!-- ============ HERO ============ -->
 <section class="hero" data-section="I" data-title="Investment Overview">
@@ -1206,6 +1416,51 @@
     window.addEventListener('resize', update);
     setTimeout(update, 100);
     setTimeout(update, 2600);
+  })();
+
+  /* ============ MOBILE MENU ============ */
+  (function () {
+    const toggle = document.getElementById('navToggle');
+    const menu = document.getElementById('mobileMenu');
+    if (!toggle || !menu) return;
+
+    function open() {
+      toggle.classList.add('is-open');
+      menu.classList.add('is-open');
+      menu.setAttribute('aria-hidden', 'false');
+      toggle.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    }
+    function close() {
+      toggle.classList.remove('is-open');
+      menu.classList.remove('is-open');
+      menu.setAttribute('aria-hidden', 'true');
+      toggle.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+    toggle.addEventListener('click', () => {
+      if (menu.classList.contains('is-open')) close();
+      else open();
+    });
+    menu.querySelectorAll('[data-mm-close]').forEach(el => {
+      el.addEventListener('click', close);
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menu.classList.contains('is-open')) close();
+    });
+    // Replay intro from mobile menu
+    const replay = menu.querySelector('[data-mm-replay]');
+    if (replay) {
+      replay.addEventListener('click', () => {
+        close();
+        const replayBtn = document.getElementById('replayIntro');
+        if (replayBtn) replayBtn.click();
+      });
+    }
+    // Close if viewport grows past mobile breakpoint
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 1100 && menu.classList.contains('is-open')) close();
+    });
   })();
 </script>
 
