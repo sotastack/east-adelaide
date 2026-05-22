@@ -887,29 +887,26 @@
 
   /* ============ ATMOSPHERIC HERO LAYER ============
    * Sits full-bleed behind the entire hero section. Three procedural
-   * variants randomize on load to give a different mood per refresh
-   * (drift / mist / glimmer). When real MP4 loops are present in
-   * media/atmos/ they layer on top and replace the procedural backdrop.
-   * Scrim ensures hero text remains legible at all times.
+   * variants randomize on load (drift / mist / glimmer). When real MP4
+   * loops are present in media/atmos/ they layer on top and replace
+   * the procedural backdrop. Tuned for clearly visible motion.
    */
   .hero-atmos {
     position: absolute; inset: 0;
     z-index: 0; overflow: hidden; pointer-events: none;
-    opacity: 0; transition: opacity 1.8s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0; transition: opacity 1.4s cubic-bezier(0.4, 0, 0.2, 1);
     background: var(--paper);
   }
   .hero-atmos.is-ready { opacity: 1; }
-  /* Legibility scrim — heavier on the left (where the headline lives),
-     fading out toward the right where the photo frame sits. */
+  /* Light scrim — only under the headline area, just enough for
+     legibility. Keeps the rest of the atmospheric motion visible. */
   .hero-atmos::after {
     content: ""; position: absolute; inset: 0; z-index: 6;
     background:
-      linear-gradient(110deg, rgba(250,247,241,0.78) 0%, rgba(250,247,241,0.42) 38%, rgba(250,247,241,0.12) 72%, rgba(250,247,241,0) 100%),
-      linear-gradient(0deg, rgba(250,247,241,0.0) 60%, rgba(250,247,241,0.35) 100%);
+      linear-gradient(105deg, rgba(244,240,232,0.45) 0%, rgba(244,240,232,0.18) 35%, rgba(244,240,232,0) 65%);
     pointer-events: none;
   }
-  /* Atmospheric video overlay — loads on top of procedural backdrop if
-     a real MP4 is present in media/atmos/. Silently absent otherwise. */
+  /* Video overlay — covers procedural backdrop when MP4 loads */
   .hero-atmos .atmos-video {
     position: absolute; inset: 0; width: 100%; height: 100%;
     object-fit: cover; opacity: 0; z-index: 4;
@@ -920,114 +917,124 @@
   .hero-atmos .atmos-video.is-ready { opacity: 0.9; }
   .hero-atmos .atmos-grain {
     position: absolute; inset: 0; z-index: 5; pointer-events: none;
-    opacity: 0.07; mix-blend-mode: multiply;
+    opacity: 0.06; mix-blend-mode: multiply;
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='280' height='280'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
   }
 
-  /* ─── VARIANT 1: DRIFT — slow particles falling at parallax speeds ─── */
+  /* ─── VARIANT 1: DRIFT — visible particles falling at parallax speeds ─── */
   .hero-atmos.is-drift {
-    background: linear-gradient(165deg, #F4F0E8 0%, #EBE4D6 60%, #DDD3BD 100%);
+    background:
+      radial-gradient(ellipse at 30% 20%, rgba(184,107,60,0.10) 0%, transparent 55%),
+      linear-gradient(165deg, #F1ECDF 0%, #DDD3BD 60%, #BFB59A 100%);
   }
   .hero-atmos.is-drift .drift-layer {
     position: absolute; inset: -15%;
     background-repeat: repeat;
     will-change: transform;
   }
+  /* Larger near-field particles in dark slate so they read against the warm bg */
   .hero-atmos.is-drift .drift-1 {
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><circle cx='17' cy='34' r='1' fill='%23B86B3C' opacity='0.55'/><circle cx='98' cy='12' r='1.2' fill='%238A4A2A' opacity='0.5'/><circle cx='201' cy='89' r='0.8' fill='%23B86B3C' opacity='0.6'/><circle cx='150' cy='177' r='1' fill='%238A4A2A' opacity='0.45'/><circle cx='55' cy='220' r='1.4' fill='%23B86B3C' opacity='0.55'/><circle cx='220' cy='200' r='0.7' fill='%238A4A2A' opacity='0.55'/><circle cx='30' cy='150' r='1.1' fill='%23B86B3C' opacity='0.5'/><circle cx='180' cy='44' r='0.9' fill='%238A4A2A' opacity='0.45'/><circle cx='112' cy='95' r='1' fill='%23B86B3C' opacity='0.5'/><circle cx='75' cy='130' r='0.8' fill='%238A4A2A' opacity='0.5'/></svg>");
-    background-size: 240px 240px;
-    animation: drift-fall 34s linear infinite;
-    opacity: 0.85;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='280' height='280'><circle cx='34' cy='42' r='3' fill='%231E2A3A' opacity='0.55'/><circle cx='124' cy='18' r='3.6' fill='%231E2A3A' opacity='0.5'/><circle cx='232' cy='98' r='2.4' fill='%231E2A3A' opacity='0.6'/><circle cx='178' cy='205' r='3' fill='%231E2A3A' opacity='0.5'/><circle cx='68' cy='240' r='4' fill='%231E2A3A' opacity='0.55'/><circle cx='250' cy='220' r='2.2' fill='%231E2A3A' opacity='0.55'/><circle cx='42' cy='168' r='3.4' fill='%231E2A3A' opacity='0.5'/><circle cx='200' cy='52' r='2.8' fill='%231E2A3A' opacity='0.55'/><circle cx='138' cy='118' r='3' fill='%231E2A3A' opacity='0.5'/><circle cx='88' cy='145' r='2.4' fill='%231E2A3A' opacity='0.5'/></svg>");
+    background-size: 280px 280px;
+    animation: drift-fall 22s linear infinite;
+    opacity: 0.9;
   }
+  /* Mid-field copper particles */
   .hero-atmos.is-drift .drift-2 {
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='380' height='380'><circle cx='44' cy='66' r='1.6' fill='%236B6F75' opacity='0.4'/><circle cx='150' cy='180' r='1.8' fill='%236B6F75' opacity='0.35'/><circle cx='298' cy='112' r='1.4' fill='%236B6F75' opacity='0.4'/><circle cx='340' cy='280' r='2' fill='%236B6F75' opacity='0.3'/><circle cx='95' cy='320' r='1.5' fill='%236B6F75' opacity='0.4'/><circle cx='220' cy='44' r='1.7' fill='%236B6F75' opacity='0.35'/></svg>");
-    background-size: 380px 380px;
-    animation: drift-fall 52s linear infinite;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='420' height='420'><circle cx='52' cy='78' r='5' fill='%238A4A2A' opacity='0.45'/><circle cx='170' cy='198' r='6' fill='%238A4A2A' opacity='0.4'/><circle cx='332' cy='128' r='4.5' fill='%238A4A2A' opacity='0.45'/><circle cx='380' cy='310' r='6.5' fill='%238A4A2A' opacity='0.35'/><circle cx='108' cy='358' r='5' fill='%238A4A2A' opacity='0.45'/><circle cx='246' cy='52' r='5.5' fill='%238A4A2A' opacity='0.4'/><circle cx='62' cy='256' r='4' fill='%238A4A2A' opacity='0.45'/></svg>");
+    background-size: 420px 420px;
+    animation: drift-fall 38s linear infinite;
+    opacity: 0.75;
+  }
+  /* Far-field tiny ink dots for depth */
+  .hero-atmos.is-drift .drift-3 {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><circle cx='22' cy='44' r='1.5' fill='%230B1220' opacity='0.5'/><circle cx='98' cy='12' r='2' fill='%230B1220' opacity='0.55'/><circle cx='148' cy='100' r='1.2' fill='%230B1220' opacity='0.55'/><circle cx='55' cy='148' r='1.6' fill='%230B1220' opacity='0.5'/><circle cx='160' cy='160' r='1.4' fill='%230B1220' opacity='0.55'/><circle cx='112' cy='62' r='1.2' fill='%230B1220' opacity='0.5'/></svg>");
+    background-size: 180px 180px;
+    animation: drift-fall 16s linear infinite;
     opacity: 0.7;
   }
-  .hero-atmos.is-drift .drift-3 {
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><circle cx='22' cy='44' r='0.6' fill='%230B1220' opacity='0.45'/><circle cx='98' cy='12' r='0.8' fill='%230B1220' opacity='0.5'/><circle cx='130' cy='100' r='0.5' fill='%230B1220' opacity='0.5'/><circle cx='55' cy='130' r='0.7' fill='%230B1220' opacity='0.45'/><circle cx='140' cy='150' r='0.6' fill='%230B1220' opacity='0.5'/></svg>");
-    background-size: 160px 160px;
-    animation: drift-fall 24s linear infinite;
-    opacity: 0.8;
-  }
   @keyframes drift-fall {
-    from { transform: translate3d(0, -15%, 0); }
-    to   { transform: translate3d(2%, 15%, 0); }
+    from { transform: translate3d(0, -18%, 0); }
+    to   { transform: translate3d(3%, 18%, 0); }
   }
 
-  /* ─── VARIANT 2: MIST — large soft copper-tinted blobs drifting ─── */
+  /* ─── VARIANT 2: MIST — bold copper/slate clouds drifting ─── */
   .hero-atmos.is-mist {
-    background: linear-gradient(180deg, #F4F0E8 0%, #EBE4D6 100%);
+    background: linear-gradient(180deg, #F1ECDF 0%, #D8CFB6 100%);
   }
   .hero-atmos.is-mist .blob {
     position: absolute;
-    width: 70vw; height: 70vh; min-width: 600px; min-height: 600px;
+    width: 60vw; height: 60vh; min-width: 500px; min-height: 500px;
     border-radius: 50%;
-    filter: blur(80px);
+    filter: blur(50px);
     will-change: transform;
   }
   .hero-atmos.is-mist .blob-1 {
-    top: -25%; left: -20%;
-    background: radial-gradient(circle at 50% 50%, rgba(184,107,60,0.18) 0%, transparent 65%);
-    animation: blob-drift-a 64s ease-in-out infinite;
+    top: -20%; left: -15%;
+    background: radial-gradient(circle at 50% 50%, rgba(184,107,60,0.50) 0%, rgba(184,107,60,0.15) 30%, transparent 65%);
+    animation: blob-drift-a 32s ease-in-out infinite;
   }
   .hero-atmos.is-mist .blob-2 {
-    top: 10%; right: -25%;
-    background: radial-gradient(circle at 50% 50%, rgba(138,74,42,0.16) 0%, transparent 65%);
-    animation: blob-drift-b 78s ease-in-out infinite;
+    top: 15%; right: -20%;
+    background: radial-gradient(circle at 50% 50%, rgba(138,74,42,0.55) 0%, rgba(138,74,42,0.18) 30%, transparent 65%);
+    animation: blob-drift-b 38s ease-in-out infinite;
   }
   .hero-atmos.is-mist .blob-3 {
-    bottom: -30%; left: 25%;
-    background: radial-gradient(circle at 50% 50%, rgba(107,111,117,0.18) 0%, transparent 65%);
-    animation: blob-drift-c 86s ease-in-out infinite;
+    bottom: -25%; left: 20%;
+    background: radial-gradient(circle at 50% 50%, rgba(30,42,58,0.45) 0%, rgba(30,42,58,0.15) 30%, transparent 65%);
+    animation: blob-drift-c 44s ease-in-out infinite;
   }
   .hero-atmos.is-mist .blob-4 {
-    top: 30%; left: 40%;
-    width: 50vw; height: 50vh; min-width: 400px; min-height: 400px;
-    background: radial-gradient(circle at 50% 50%, rgba(184,107,60,0.10) 0%, transparent 65%);
-    animation: blob-drift-a 92s ease-in-out infinite reverse;
+    top: 25%; left: 35%;
+    width: 45vw; height: 45vh; min-width: 360px; min-height: 360px;
+    background: radial-gradient(circle at 50% 50%, rgba(184,107,60,0.32) 0%, rgba(184,107,60,0.08) 30%, transparent 65%);
+    animation: blob-drift-a 50s ease-in-out infinite reverse;
   }
   @keyframes blob-drift-a {
     0%, 100% { transform: translate(0, 0); }
-    33%      { transform: translate(8vw, -6vh); }
-    66%      { transform: translate(-4vw, 8vh); }
+    33%      { transform: translate(12vw, -8vh); }
+    66%      { transform: translate(-6vw, 10vh); }
   }
   @keyframes blob-drift-b {
     0%, 100% { transform: translate(0, 0); }
-    50%      { transform: translate(-10vw, 6vh); }
+    50%      { transform: translate(-14vw, 8vh); }
   }
   @keyframes blob-drift-c {
     0%, 100% { transform: translate(0, 0); }
-    40%      { transform: translate(6vw, -4vh); }
-    70%      { transform: translate(-8vw, 2vh); }
+    40%      { transform: translate(8vw, -6vh); }
+    70%      { transform: translate(-10vw, 4vh); }
   }
 
-  /* ─── VARIANT 3: GLIMMER — sparse copper sparkles ─── */
+  /* ─── VARIANT 3: GLIMMER — visible copper sparkles on a warm bg ─── */
   .hero-atmos.is-glimmer {
-    background: linear-gradient(160deg, #EBE4D6 0%, #DDD3BD 100%);
+    background:
+      radial-gradient(ellipse at 70% 30%, rgba(184,107,60,0.14) 0%, transparent 50%),
+      linear-gradient(160deg, #E5DBC4 0%, #C9BC9E 100%);
   }
   .hero-atmos.is-glimmer .spark {
     position: absolute;
-    width: 5px; height: 5px;
+    width: 10px; height: 10px;
     border-radius: 50%;
     background: var(--copper);
-    box-shadow: 0 0 8px 1px rgba(184,107,60,0.4);
+    box-shadow: 0 0 20px 4px rgba(184,107,60,0.55);
     opacity: 0;
-    animation: spark-pulse 7s ease-in-out infinite;
+    animation: spark-pulse 5s ease-in-out infinite;
     will-change: opacity, transform;
   }
-  .hero-atmos.is-glimmer .spark.s { width: 3px; height: 3px; box-shadow: 0 0 5px 0 rgba(184,107,60,0.35); }
+  .hero-atmos.is-glimmer .spark.s {
+    width: 6px; height: 6px;
+    box-shadow: 0 0 14px 2px rgba(184,107,60,0.5);
+  }
   .hero-atmos.is-glimmer .spark.dark {
     background: var(--ember);
-    box-shadow: 0 0 6px 1px rgba(138,74,42,0.35);
+    box-shadow: 0 0 16px 3px rgba(138,74,42,0.5);
   }
   @keyframes spark-pulse {
-    0%, 100% { opacity: 0; transform: scale(0.4); }
-    50%      { opacity: 0.8; transform: scale(1.15); }
+    0%, 100% { opacity: 0; transform: scale(0.5); }
+    50%      { opacity: 1; transform: scale(1.25); }
   }
 
-  /* Hero needs its content above the atmosphere */
+  /* Hero content needs to render above the atmosphere */
   section.hero > .container { position: relative; z-index: 2; }
   /* Photo frame sits on top of atmosphere */
   .hero-figure { z-index: 3; }
@@ -1039,7 +1046,7 @@
     .hero-atmos .atmos-video {
       animation: none !important;
     }
-    .hero-atmos { opacity: 0.5; }
+    .hero-atmos { opacity: 0.65; }
   }
 
   /* ============ MONOGRAM MARKS ============ */
