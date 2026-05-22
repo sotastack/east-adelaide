@@ -1,6 +1,17 @@
 # Atmospheric Hero Loops
 
-Drop short looping MP4 files here. On each page load, `index.html` will randomly select one and play it muted, autoplay, looped behind the hero image. If no file is present (or the user prefers reduced motion), the static hero image shows instead — no warning, no broken state.
+The homepage hero has a full-bleed atmospheric backdrop. By default the page renders a **procedural** atmospheric layer in pure CSS/SVG — one of three variants (drift, mist, glimmer) chosen at random per page load. Drop MP4 files into this directory and they will layer on top of the procedural backdrop, replacing it with real footage. If any MP4 fails to load (404, codec, autoplay block) the procedural variant stays visible.
+
+## Why procedural by default
+
+Stock-video sites (Pexels, Pixabay, Coverr) prohibit hotlinking, and we don't want the repo growing every time the team wants to try a new mood. The procedural layer:
+
+- Ships at ~6 KB inline (versus 1-3 MB per MP4)
+- Matches the existing copper/bone palette automatically
+- Animates smoothly on every device, no codec concerns
+- Gives a usable preview of the effect placement before real footage is sourced
+
+## Adding real MP4 loops
 
 ## Filenames the page looks for
 
