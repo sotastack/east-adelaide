@@ -960,78 +960,83 @@
 
   /* ─── VARIANT 2: MIST — bold copper/slate clouds drifting ─── */
   .hero-atmos.is-mist {
-    background: linear-gradient(180deg, #F1ECDF 0%, #D8CFB6 100%);
+    background: linear-gradient(180deg, #D8CFB6 0%, #B5A988 100%);
   }
   .hero-atmos.is-mist .blob {
     position: absolute;
-    width: 60vw; height: 60vh; min-width: 500px; min-height: 500px;
+    width: 55vw; height: 55vh; min-width: 480px; min-height: 480px;
     border-radius: 50%;
-    filter: blur(50px);
+    filter: blur(28px);
     will-change: transform;
+    mix-blend-mode: multiply;
   }
   .hero-atmos.is-mist .blob-1 {
-    top: -20%; left: -15%;
-    background: radial-gradient(circle at 50% 50%, rgba(184,107,60,0.50) 0%, rgba(184,107,60,0.15) 30%, transparent 65%);
-    animation: blob-drift-a 32s ease-in-out infinite;
+    top: -22%; left: -18%;
+    background: radial-gradient(circle at 50% 50%, rgba(184,107,60,0.95) 0%, rgba(184,107,60,0.45) 25%, rgba(184,107,60,0.08) 55%, transparent 70%);
+    animation: blob-drift-a 28s ease-in-out infinite;
   }
   .hero-atmos.is-mist .blob-2 {
-    top: 15%; right: -20%;
-    background: radial-gradient(circle at 50% 50%, rgba(138,74,42,0.55) 0%, rgba(138,74,42,0.18) 30%, transparent 65%);
-    animation: blob-drift-b 38s ease-in-out infinite;
+    top: 12%; right: -22%;
+    background: radial-gradient(circle at 50% 50%, rgba(138,74,42,0.92) 0%, rgba(138,74,42,0.42) 25%, rgba(138,74,42,0.08) 55%, transparent 70%);
+    animation: blob-drift-b 34s ease-in-out infinite;
   }
   .hero-atmos.is-mist .blob-3 {
-    bottom: -25%; left: 20%;
-    background: radial-gradient(circle at 50% 50%, rgba(30,42,58,0.45) 0%, rgba(30,42,58,0.15) 30%, transparent 65%);
-    animation: blob-drift-c 44s ease-in-out infinite;
+    bottom: -28%; left: 18%;
+    background: radial-gradient(circle at 50% 50%, rgba(30,42,58,0.85) 0%, rgba(30,42,58,0.40) 25%, rgba(30,42,58,0.10) 55%, transparent 70%);
+    animation: blob-drift-c 40s ease-in-out infinite;
   }
   .hero-atmos.is-mist .blob-4 {
-    top: 25%; left: 35%;
-    width: 45vw; height: 45vh; min-width: 360px; min-height: 360px;
-    background: radial-gradient(circle at 50% 50%, rgba(184,107,60,0.32) 0%, rgba(184,107,60,0.08) 30%, transparent 65%);
-    animation: blob-drift-a 50s ease-in-out infinite reverse;
+    top: 22%; left: 32%;
+    width: 40vw; height: 40vh; min-width: 340px; min-height: 340px;
+    background: radial-gradient(circle at 50% 50%, rgba(184,107,60,0.70) 0%, rgba(184,107,60,0.25) 25%, transparent 65%);
+    animation: blob-drift-a 46s ease-in-out infinite reverse;
   }
   @keyframes blob-drift-a {
     0%, 100% { transform: translate(0, 0); }
-    33%      { transform: translate(12vw, -8vh); }
-    66%      { transform: translate(-6vw, 10vh); }
+    33%      { transform: translate(14vw, -10vh); }
+    66%      { transform: translate(-8vw, 12vh); }
   }
   @keyframes blob-drift-b {
     0%, 100% { transform: translate(0, 0); }
-    50%      { transform: translate(-14vw, 8vh); }
+    50%      { transform: translate(-16vw, 10vh); }
   }
   @keyframes blob-drift-c {
     0%, 100% { transform: translate(0, 0); }
-    40%      { transform: translate(8vw, -6vh); }
-    70%      { transform: translate(-10vw, 4vh); }
+    40%      { transform: translate(10vw, -8vh); }
+    70%      { transform: translate(-12vw, 6vh); }
   }
 
-  /* ─── VARIANT 3: GLIMMER — visible copper sparkles on a warm bg ─── */
+  /* ─── VARIANT 3: GLIMMER — copper sparkles on a darker warm bg ─── */
   .hero-atmos.is-glimmer {
     background:
-      radial-gradient(ellipse at 70% 30%, rgba(184,107,60,0.14) 0%, transparent 50%),
-      linear-gradient(160deg, #E5DBC4 0%, #C9BC9E 100%);
+      radial-gradient(ellipse at 70% 30%, rgba(184,107,60,0.20) 0%, transparent 45%),
+      linear-gradient(160deg, #BFB59A 0%, #9A8E72 100%);
   }
   .hero-atmos.is-glimmer .spark {
     position: absolute;
-    width: 10px; height: 10px;
+    width: 16px; height: 16px;
     border-radius: 50%;
     background: var(--copper);
-    box-shadow: 0 0 20px 4px rgba(184,107,60,0.55);
+    box-shadow: 0 0 28px 6px rgba(184,107,60,0.7);
     opacity: 0;
-    animation: spark-pulse 5s ease-in-out infinite;
+    animation: spark-pulse 4.2s ease-in-out infinite;
     will-change: opacity, transform;
   }
   .hero-atmos.is-glimmer .spark.s {
-    width: 6px; height: 6px;
-    box-shadow: 0 0 14px 2px rgba(184,107,60,0.5);
+    width: 10px; height: 10px;
+    box-shadow: 0 0 20px 4px rgba(184,107,60,0.65);
   }
   .hero-atmos.is-glimmer .spark.dark {
     background: var(--ember);
-    box-shadow: 0 0 16px 3px rgba(138,74,42,0.5);
+    box-shadow: 0 0 24px 5px rgba(138,74,42,0.65);
   }
+  /* Extend the visibility phase so sparks read as on/off pulses rather
+     than barely-glimpsed peaks. Each spark is at high opacity 30→70% of
+     its cycle. */
   @keyframes spark-pulse {
-    0%, 100% { opacity: 0; transform: scale(0.5); }
-    50%      { opacity: 1; transform: scale(1.25); }
+    0%, 100%  { opacity: 0; transform: scale(0.4); }
+    25%, 75%  { opacity: 0.95; transform: scale(1.1); }
+    50%       { opacity: 1; transform: scale(1.35); }
   }
 
   /* Hero content needs to render above the atmosphere */
