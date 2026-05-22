@@ -884,6 +884,221 @@
     .curtain-tagline { font-size: 16px; max-width: 28ch; }
     .curtain-foot { bottom: 24px; padding: 0 24px; font-size: 9px; gap: 12px; }
   }
+
+  /* ============ ATMOSPHERIC HERO VIDEO ============ */
+  .hero-figure { position: relative; }
+  .hero-figure .atmos-video {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; opacity: 0;
+    transition: opacity 1.6s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1; pointer-events: none;
+    filter: grayscale(0.18) contrast(1.04) brightness(0.95);
+    mix-blend-mode: multiply;
+  }
+  .hero-figure .atmos-video.is-ready { opacity: 0.85; }
+  .hero-figure .atmos-grain {
+    position: absolute; inset: 0; z-index: 2; pointer-events: none;
+    opacity: 0.08; mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='280' height='280'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+  .hero-figure .frame-caption { position: relative; z-index: 3; }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-figure .atmos-video { display: none !important; }
+  }
+
+  /* ============ MONOGRAM MARKS ============ */
+  .mark {
+    display: inline-flex; flex-direction: column; align-items: center;
+    gap: 8px; width: 60px; flex-shrink: 0;
+  }
+  .mark .letters {
+    font-family: var(--display); font-weight: 360;
+    font-variation-settings: "opsz" 24, "SOFT" 30;
+    font-size: 26px; line-height: 1; letter-spacing: -0.02em;
+    color: var(--bone); font-feature-settings: "ss01";
+  }
+  .mark .rule { width: 28px; height: 1px; background: var(--copper); }
+  .mark.on-light .letters { color: var(--ink); }
+  .mark.on-light .rule { background: var(--ember); }
+
+  /* Natural Biotech leaf logo (recreated from PDF) */
+  .nb-leaf {
+    display: inline-block; width: 60px; height: 30px;
+    flex-shrink: 0;
+  }
+  .nb-leaf svg { width: 100%; height: 100%; display: block; }
+
+  /* ============ THIRD PILLAR (BIOTECH) — expand to three ============ */
+  .pillar-trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: 56px; }
+  @media (max-width: 1100px) { .pillar-trio { grid-template-columns: 1fr; gap: 80px; } }
+  .pillar-trio .pillar .img-wrap { aspect-ratio: 4/5; }
+  .pillar-trio .pillar h3 { font-size: clamp(22px, 2vw, 30px); }
+  .pillar-trio .pillar p { font-size: 15px; max-width: none; }
+  .pillar-trio .subsidiary-list li { padding: 14px 0; font-size: 14px; }
+
+  /* ============ HOUSES GROUPED BY PILLAR ============ */
+  .maisons-pillar-band {
+    grid-column: 1 / -1;
+    display: flex; align-items: baseline; justify-content: space-between;
+    padding: 56px 32px 24px; border-bottom: 1px solid var(--hair-dark);
+    gap: 24px; flex-wrap: wrap;
+  }
+  .maisons-pillar-band:first-child { padding-top: 0; }
+  .maisons-pillar-band .pb-roman {
+    font-family: var(--display); font-weight: 360;
+    font-variation-settings: "opsz" 60;
+    font-size: clamp(28px, 3.2vw, 44px); color: var(--copper);
+    line-height: 1; letter-spacing: -0.02em;
+  }
+  .maisons-pillar-band .pb-name {
+    font-family: var(--display); font-weight: 360;
+    font-variation-settings: "opsz" 60, "SOFT" 40;
+    font-size: clamp(22px, 2.4vw, 32px); color: var(--bone);
+    line-height: 1.1; letter-spacing: -0.012em;
+    flex: 1; min-width: 200px;
+  }
+  .maisons-pillar-band .pb-name em { font-style: italic; color: var(--copper); }
+  .maisons-pillar-band .pb-meta {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--stone-soft);
+    max-width: 30ch; line-height: 1.5;
+  }
+  .maison .mark-row {
+    display: flex; align-items: center; gap: 18px; margin-bottom: 22px;
+  }
+  .maison .mark-row .idx-text {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.22em;
+    color: var(--stone-soft); text-transform: uppercase;
+  }
+  .maison .mark-row .div-text { color: var(--copper); }
+  @media (max-width: 1000px) {
+    .maisons-pillar-band { padding: 40px 22px 18px; }
+  }
+
+  /* ============ PROJECTS ============ */
+  .projects { padding: 180px 0 160px; background: var(--paper); border-top: 1px solid var(--hair-light); }
+  .projects .section-head { margin-bottom: 72px; }
+  .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--hair-light); border: 1px solid var(--hair-light); }
+  .project-card {
+    background: var(--paper); padding: 48px 40px 44px;
+    display: flex; flex-direction: column; gap: 18px;
+    position: relative; transition: background 0.4s;
+  }
+  .project-card:hover { background: var(--paper-deep); }
+  .project-card .pc-head {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    gap: 24px; padding-bottom: 18px; border-bottom: 1px solid var(--hair-light);
+  }
+  .project-card .pc-id {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--stone);
+    font-feature-settings: "lnum", "tnum";
+  }
+  .project-card .pc-id .pc-num { color: var(--copper); margin-right: 12px; }
+  .project-card .pc-pillar {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--ember);
+    padding: 4px 10px; border: 1px solid var(--ember);
+  }
+  .project-card .pc-title {
+    font-family: var(--display); font-weight: 360;
+    font-variation-settings: "opsz" 60, "SOFT" 30;
+    font-size: clamp(24px, 2.4vw, 34px); line-height: 1.12;
+    letter-spacing: -0.014em; color: var(--ink);
+    margin-top: 6px;
+  }
+  .project-card .pc-title em { font-style: italic; color: var(--ember); }
+  .project-card .pc-desc {
+    font-size: 14.5px; line-height: 1.62; color: var(--slate);
+    max-width: 56ch;
+  }
+  .project-card .pc-tags {
+    display: flex; gap: 10px 14px; flex-wrap: wrap;
+    margin-top: 8px; padding-top: 18px;
+    border-top: 1px solid var(--hair-light);
+  }
+  .project-card .pc-tags span {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--stone);
+  }
+  .project-card .pc-tags span.partner { color: var(--ink); }
+  .project-card .pc-tags span.partner::before {
+    content: ""; display: inline-block; width: 4px; height: 4px;
+    background: var(--copper); border-radius: 50%;
+    vertical-align: middle; margin-right: 8px;
+  }
+  @media (max-width: 900px) {
+    .projects-grid { grid-template-columns: 1fr; }
+    .project-card { padding: 36px 26px 32px; }
+  }
+
+  /* ============ PARTNERS ============ */
+  .partners { padding: 140px 0 120px; background: var(--paper-deep); border-top: 1px solid var(--hair-light); }
+  .partners .section-head { margin-bottom: 48px; }
+  .partners-carousel {
+    position: relative; overflow: hidden;
+    margin: 0 calc(-1 * var(--gutter)); padding: 20px 0;
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  }
+  .partners-track {
+    display: flex; gap: 80px; align-items: center;
+    width: max-content;
+    animation: partners-scroll 48s linear infinite;
+  }
+  .partners-carousel:hover .partners-track { animation-play-state: paused; }
+  @keyframes partners-scroll {
+    from { transform: translate3d(0, 0, 0); }
+    to { transform: translate3d(-50%, 0, 0); }
+  }
+  .partner-cell {
+    display: flex; align-items: center; gap: 16px;
+    padding: 14px 28px; min-width: max-content;
+    border-left: 1px solid var(--hair-light);
+    flex-shrink: 0; height: 84px;
+  }
+  .partner-cell:first-child { border-left: none; }
+  .partner-cell .pc-mark { flex-shrink: 0; }
+  .partner-cell .pc-info { display: flex; flex-direction: column; gap: 3px; }
+  .partner-cell .pc-info .name {
+    font-family: var(--display); font-size: 18px;
+    font-variation-settings: "opsz" 36, "SOFT" 30;
+    letter-spacing: -0.01em; color: var(--ink); line-height: 1;
+  }
+  .partner-cell .pc-info .name em { font-style: italic; color: var(--ember); }
+  .partner-cell .pc-info .kind {
+    font-family: var(--mono); font-size: 9px; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--stone);
+  }
+  .partner-cell img.logo-img {
+    height: 28px; width: auto; max-width: 160px;
+    filter: brightness(0.2);
+    opacity: 0.85;
+  }
+  .partner-cell a.partner-link {
+    display: flex; align-items: center; gap: 16px;
+    color: inherit; transition: opacity 0.2s;
+  }
+  .partner-cell a.partner-link:hover { opacity: 0.6; }
+  .partners-foot {
+    margin-top: 36px; padding-top: 28px;
+    border-top: 1px solid var(--hair-light);
+    display: flex; justify-content: space-between; gap: 24px;
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--stone);
+    flex-wrap: wrap;
+  }
+  .partners-foot .pf-key { color: var(--ember); }
+
+  /* ============ ATMOSPHERIC VIDEO MOBILE TUNING ============ */
+  @media (max-width: 768px) {
+    .projects { padding: 90px 0 80px; }
+    .partners { padding: 80px 0 70px; }
+    .partners-carousel { margin: 0 -16px; }
+    .partner-cell { padding: 12px 20px; gap: 12px; height: 72px; }
+    .partner-cell .pc-info .name { font-size: 16px; }
+    .pillar-trio { gap: 48px; }
+  }
 </style>
 </head>
 <body class="curtain-active">
@@ -922,8 +1137,9 @@
       <ul>
         <li><a href="#" data-link data-label="View">About</a></li>
         <li><a href="#" data-link data-label="Explore">Businesses</a></li>
+        <li><a href="#" data-link data-label="View">Projects</a></li>
+        <li><a href="#" data-link data-label="View">Partners</a></li>
         <li><a href="#" data-link data-label="Read">Insights</a></li>
-        <li><a href="#" data-link data-label="Browse">Careers</a></li>
       </ul>
       <div class="nav-right">
         <button type="button" class="replay-intro" id="replayIntro" data-link data-label="Replay">Replay Intro</button>
@@ -942,6 +1158,8 @@
   <ul class="mm-links">
     <li><a href="#" data-mm-close>About</a></li>
     <li><a href="#" data-mm-close>Businesses</a></li>
+    <li><a href="#" data-mm-close>Projects</a></li>
+    <li><a href="#" data-mm-close>Partners</a></li>
     <li><a href="#" data-mm-close>Insights</a></li>
     <li><a href="#" data-mm-close>Careers</a></li>
   </ul>
@@ -964,6 +1182,15 @@
       </div>
       <div class="hero-figure">
         <img src="https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1800&q=80" alt="Material study" onerror="this.style.background='linear-gradient(135deg,#1E2A3A,#0B1220)';this.removeAttribute('src')" />
+        <!--
+          Atmospheric loop. Drop 3-5 short muted MP4 loops (8-15s each, 1-3MB,
+          1280x1600 portrait or larger) into ./media/atmos/ named atmos-01.mp4
+          through atmos-05.mp4. Each page load randomly selects one; falls
+          back to the still image above if video missing or motion-reduced.
+        -->
+        <video class="atmos-video" id="atmosVideo"
+               muted autoplay loop playsinline preload="none" aria-hidden="true"></video>
+        <div class="atmos-grain"></div>
         <div class="frame-caption">
           <span class="meta">Frame 01.3 · Aluminium extrusion line, Procon Material · Dandenong, Victoria</span>
           <span class="frame-no num">MAR 2026</span>
@@ -977,23 +1204,23 @@
       <div class="metrics-grid">
         <div class="metric">
           <span class="label"><span class="idx num">01</span>Combined Annual Revenue</span>
-          <span class="value">$75<span class="unit">M</span></span>
-          <span class="meta">Across two essential operating divisions in Australia.</span>
+          <span class="value">$90<span class="unit">M</span></span>
+          <span class="meta">Across three essential operating divisions in Australia.</span>
         </div>
         <div class="metric">
           <span class="label"><span class="idx num">02</span>Operating Businesses</span>
-          <span class="value">06</span>
-          <span class="meta">Materials, fabrication, R&amp;D, food supply chain.</span>
+          <span class="value">10</span>
+          <span class="meta">Materials, fabrication, biotech, food supply chain.</span>
         </div>
         <div class="metric">
           <span class="label"><span class="idx num">03</span>Academic Partners</span>
-          <span class="value">02</span>
-          <span class="meta">University of Melbourne · University of Sydney.</span>
+          <span class="value">04</span>
+          <span class="meta">USyd · UMelb · RMIT · UAdelaide.</span>
         </div>
         <div class="metric">
           <span class="label"><span class="idx num">04</span>Operating Divisions</span>
-          <span class="value">02</span>
-          <span class="meta">Housing &amp; Construction · Food Supply Chain.</span>
+          <span class="value">03</span>
+          <span class="meta">Shelter · Natural Biotech · Food.</span>
         </div>
       </div>
     </div>
@@ -1001,19 +1228,19 @@
 </section>
 
 <!-- ============ PILLARS ============ -->
-<section class="pillars" data-section="II" data-title="Two Pillars">
+<section class="pillars" data-section="II" data-title="Three Pillars">
   <div class="container">
     <div class="section-head">
       <div>
-        <div class="eyebrow"><span class="roman">II.</span>Two Pillars</div>
-        <h2 class="h2"><span style="font-style:italic;color:var(--ember)">Shelter</span> and <span style="font-style:italic;color:var(--ember)">Food.</span><br/>Built as one.</h2>
+        <div class="eyebrow"><span class="roman">II.</span>Three Pillars</div>
+        <h2 class="h2"><span style="font-style:italic;color:var(--ember)">Shelter</span>, <span style="font-style:italic;color:var(--ember)">Biotech</span> and <span style="font-style:italic;color:var(--ember)">Food.</span><br/>Built as one.</h2>
       </div>
       <div class="head-meta">
-        Inspired by the diversified industrial discipline of Wesfarmers, East Adelaide Capital Group is structured as a long-horizon operator across the two categories Australian households cannot live without.
+        Inspired by the diversified industrial discipline of Wesfarmers, East Adelaide Capital Group is structured as a long-horizon operator across three categories essential to Australian households: shelter, food, and the natural sciences that extend healthy life.
       </div>
     </div>
 
-    <div class="pillar-pair">
+    <div class="pillar-trio">
       <div class="pillar">
         <div class="img-wrap">
           <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1400&q=80" alt="Construction" onerror="this.style.background='#1E2A3A';this.removeAttribute('src')" />
@@ -1035,8 +1262,26 @@
 
       <div class="pillar">
         <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=1400&q=80" alt="Natural Biotech laboratory" onerror="this.style.background='#1E2A3A';this.removeAttribute('src')" />
+          <div class="corner">PILLAR&nbsp;II · BIOTECH</div>
+        </div>
+        <h3 class="h3">Natural Biotech</h3>
+        <p class="dropcap">An Australian-owned natural sciences platform headquartered in South Australia, developing and commercialising plant-, marine- and microbe-derived bioactive ingredients. Anchored by a contracted research relationship with the University of Adelaide and pre-clinical collaborations with Zhejiang University and partners across the Australian university network.</p>
+        <ul class="subsidiary-list">
+          <li data-link data-label="Open">Natural Biotech Pty Ltd <span class="tag">NMN / NAD<sup>+</sup></span></li>
+          <li data-link data-label="Open">Albio · Alpha Shaper <span class="tag">Metabolic</span></li>
+          <li data-link data-label="Open">Plasmalogen R&amp;D <span class="tag">Cognitive</span></li>
+          <li data-link data-label="Open">Marine Bioactive Peptides <span class="tag">Anti-Fatigue</span></li>
+        </ul>
+        <a href="#" class="explore-link" data-link data-label="Enter">Explore Biotech
+          <span class="arrow"><svg viewBox="0 0 28 8" preserveAspectRatio="none"><line x1="0" y1="4" x2="24" y2="4"/><polyline points="20,1 27,4 20,7"/></svg></span>
+        </a>
+      </div>
+
+      <div class="pillar">
+        <div class="img-wrap">
           <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=1400&q=80" alt="Central kitchen" onerror="this.style.background='#1E2A3A';this.removeAttribute('src')" />
-          <div class="corner">PILLAR&nbsp;II · FOOD</div>
+          <div class="corner">PILLAR&nbsp;III · FOOD</div>
         </div>
         <h3 class="h3">Food Supply Chain</h3>
         <p class="dropcap">An integrated food service and supply-chain platform spanning frozen seafood import and export, temperature-controlled logistics, central kitchen operations, restaurant supply and customised event catering. Designed to serve both consumer and B2B demand with reliability and food safety as first principles.</p>
@@ -1061,7 +1306,7 @@
     <div class="section-head">
       <div>
         <div class="eyebrow"><span class="roman">III.</span>Our Houses</div>
-        <h2 class="h2">Six houses.<br/><span style="font-style:italic;color:var(--copper)">One operating discipline.</span></h2>
+        <h2 class="h2">Ten houses.<br/><span style="font-style:italic;color:var(--copper)">Three operating pillars.</span></h2>
       </div>
       <div class="head-meta">
         Each business retains its own brand, leadership and customer relationships. The group provides capital, governance, technical infrastructure and shared services — and in time, the platform to take this portfolio to public markets.
@@ -1069,43 +1314,127 @@
     </div>
 
     <div class="maisons-grid">
+      <!-- PILLAR I — SHELTER -->
+      <div class="maisons-pillar-band">
+        <span class="pb-roman">I.</span>
+        <span class="pb-name">Housing &amp; <em>Construction</em></span>
+        <span class="pb-meta">Building materials, panels, aluminium fabrication, prefabrication and construction R&amp;D.</span>
+      </div>
       <div class="maison" data-link data-label="Open House">
-        <div class="index"><span>House 01</span><span class="div">SHELTER</span></div>
+        <div class="mark-row">
+          <div class="mark"><div class="letters">TT</div><div class="rule"></div></div>
+          <div class="idx-text">House 01 · <span class="div-text">SHELTER</span></div>
+        </div>
         <div class="name">Tidy Tend <em>Global</em></div>
         <div class="desc">Building materials import and export, construction materials supply, technical coordination and parent custodian of construction-related IP and know-how.</div>
         <div class="brands">Materials · Distribution · IP</div>
         <div class="arrow-wrap"><span class="arrow"><svg viewBox="0 0 28 8" preserveAspectRatio="none"><line x1="0" y1="4" x2="24" y2="4"/><polyline points="20,1 27,4 20,7"/></svg></span></div>
       </div>
       <div class="maison" data-link data-label="Open House">
-        <div class="index"><span>House 02</span><span class="div">SHELTER</span></div>
+        <div class="mark-row">
+          <div class="mark"><div class="letters">AC</div><div class="rule"></div></div>
+          <div class="idx-text">House 02 · <span class="div-text">SHELTER</span></div>
+        </div>
         <div class="name">Advanced Cladding <em>Systems</em></div>
         <div class="desc">Owner of the specialist building materials brand ProBoard — branded panel products engineered for performance, compliance and scalable Australian housing delivery.</div>
         <div class="brands">ProBoard®</div>
         <div class="arrow-wrap"><span class="arrow"><svg viewBox="0 0 28 8" preserveAspectRatio="none"><line x1="0" y1="4" x2="24" y2="4"/><polyline points="20,1 27,4 20,7"/></svg></span></div>
       </div>
       <div class="maison" data-link data-label="Open House">
-        <div class="index"><span>House 03</span><span class="div">SHELTER</span></div>
+        <div class="mark-row">
+          <div class="mark"><div class="letters">PM</div><div class="rule"></div></div>
+          <div class="idx-text">House 03 · <span class="div-text">SHELTER</span></div>
+        </div>
         <div class="name">Procon <em>Material</em></div>
         <div class="desc">Aluminium building products and fabricated components platform serving residential, commercial and prefabricated construction systems.</div>
         <div class="brands">Aluminium · Fabrication</div>
         <div class="arrow-wrap"><span class="arrow"><svg viewBox="0 0 28 8" preserveAspectRatio="none"><line x1="0" y1="4" x2="24" y2="4"/><polyline points="20,1 27,4 20,7"/></svg></span></div>
       </div>
       <div class="maison" data-link data-label="Open House">
-        <div class="index"><span>House 04</span><span class="div">SHELTER</span></div>
+        <div class="mark-row">
+          <div class="mark"><div class="letters">PB</div><div class="rule"></div></div>
+          <div class="idx-text">House 04 · <span class="div-text">SHELTER</span></div>
+        </div>
         <div class="name">Promod Building <em>Group</em></div>
         <div class="desc">Prefabricated housing solutions and the group's R&amp;D function — technical validation of new building materials, sustainable construction systems and academic collaboration.</div>
         <div class="brands">R&amp;D · Prefab · IP</div>
         <div class="arrow-wrap"><span class="arrow"><svg viewBox="0 0 28 8" preserveAspectRatio="none"><line x1="0" y1="4" x2="24" y2="4"/><polyline points="20,1 27,4 20,7"/></svg></span></div>
       </div>
       <div class="maison" data-link data-label="Open House">
-        <div class="index"><span>House 05</span><span class="div">SHELTER</span></div>
+        <div class="mark-row">
+          <div class="mark"><div class="letters">AB</div><div class="rule"></div></div>
+          <div class="idx-text">House 05 · <span class="div-text">SHELTER</span></div>
+        </div>
         <div class="name">Advance Building <em>Solutions</em></div>
         <div class="desc">Fire-resistant tapes, hardware, small-format building materials, construction accessories and innovative supply solutions for the trade channel.</div>
         <div class="brands">Fire · Hardware · Accessories</div>
         <div class="arrow-wrap"><span class="arrow"><svg viewBox="0 0 28 8" preserveAspectRatio="none"><line x1="0" y1="4" x2="24" y2="4"/><polyline points="20,1 27,4 20,7"/></svg></span></div>
       </div>
+
+      <!-- PILLAR II — NATURAL BIOTECH -->
+      <div class="maisons-pillar-band">
+        <span class="pb-roman">II.</span>
+        <span class="pb-name">Natural <em>Biotech</em></span>
+        <span class="pb-meta">Plant-, marine- and microbe-derived bioactives across cognitive, metabolic and longevity health.</span>
+      </div>
       <div class="maison" data-link data-label="Open House">
-        <div class="index"><span>House 06</span><span class="div">FOOD</span></div>
+        <div class="mark-row">
+          <div class="nb-leaf" aria-hidden="true">
+            <svg viewBox="0 0 80 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="14" cy="20" rx="10" ry="18" fill="#CFE6D6"/>
+              <ellipse cx="32" cy="20" rx="10" ry="18" fill="#3FB078"/>
+              <ellipse cx="50" cy="20" rx="10" ry="18" fill="#1F7A4A"/>
+            </svg>
+          </div>
+          <div class="idx-text">House 06 · <span class="div-text">BIOTECH</span></div>
+        </div>
+        <div class="name">Natural Biotech <em>Pty Ltd</em></div>
+        <div class="desc">South Australian innovation company contracted to the University of Adelaide. Develops enzyme-catalysed NMN (β-Nicotinamide Mononucleotide) for NAD<sup>+</sup> support — manufactured in Australia, distributed globally.</div>
+        <div class="brands">NMN · NAD<sup>+</sup> · Longevity</div>
+        <div class="arrow-wrap"><span class="arrow"><svg viewBox="0 0 28 8" preserveAspectRatio="none"><line x1="0" y1="4" x2="24" y2="4"/><polyline points="20,1 27,4 20,7"/></svg></span></div>
+      </div>
+      <div class="maison" data-link data-label="Open House">
+        <div class="mark-row">
+          <div class="mark"><div class="letters">AS</div><div class="rule"></div></div>
+          <div class="idx-text">House 07 · <span class="div-text">BIOTECH</span></div>
+        </div>
+        <div class="name">Albio · Alpha <em>Shaper</em></div>
+        <div class="desc">100% Australian-owned chewable tablet line — plant-extract carbohydrate-absorption inhibitors developed as a clinically considered alternative to dieting, surgery and stimulant-based weight-loss approaches.</div>
+        <div class="brands">Metabolic · Sugar Control · OTC</div>
+        <div class="arrow-wrap"><span class="arrow"><svg viewBox="0 0 28 8" preserveAspectRatio="none"><line x1="0" y1="4" x2="24" y2="4"/><polyline points="20,1 27,4 20,7"/></svg></span></div>
+      </div>
+      <div class="maison" data-link data-label="Open House">
+        <div class="mark-row">
+          <div class="mark"><div class="letters">PL</div><div class="rule"></div></div>
+          <div class="idx-text">House 08 · <span class="div-text">BIOTECH</span></div>
+        </div>
+        <div class="name">Plasmalogen <em>R&amp;D</em></div>
+        <div class="desc">Specialty phospholipid platform translating marine- and microbe-derived plasmalogens into food, supplement and pharmaceutical formats targeting cognitive health and neuroprotection. Lab partnership led with Prof. Tian, Zhejiang University.</div>
+        <div class="brands">Cognitive · Pls · Neurology</div>
+        <div class="arrow-wrap"><span class="arrow"><svg viewBox="0 0 28 8" preserveAspectRatio="none"><line x1="0" y1="4" x2="24" y2="4"/><polyline points="20,1 27,4 20,7"/></svg></span></div>
+      </div>
+      <div class="maison" data-link data-label="Open House">
+        <div class="mark-row">
+          <div class="mark"><div class="letters">MP</div><div class="rule"></div></div>
+          <div class="idx-text">House 09 · <span class="div-text">BIOTECH</span></div>
+        </div>
+        <div class="name">Marine Bioactive <em>Peptides</em></div>
+        <div class="desc">Bluefin tuna-derived peptide platform incorporating anserine (2–10%) — an enzyme-buffering dipeptide with documented uric-acid reduction and anti-fatigue activity. Patented process (ZL202211553053.7) via Lan Kun Marine Biotech partnership.</div>
+        <div class="brands">Anserine · Uric Acid · Anti-Fatigue</div>
+        <div class="arrow-wrap"><span class="arrow"><svg viewBox="0 0 28 8" preserveAspectRatio="none"><line x1="0" y1="4" x2="24" y2="4"/><polyline points="20,1 27,4 20,7"/></svg></span></div>
+      </div>
+
+      <!-- PILLAR III — FOOD -->
+      <div class="maisons-pillar-band">
+        <span class="pb-roman">III.</span>
+        <span class="pb-name">Food <em>Supply Chain</em></span>
+        <span class="pb-meta">Seafood logistics, central kitchen, restaurant supply and customised event catering across Victoria.</span>
+      </div>
+      <div class="maison" data-link data-label="Open House">
+        <div class="mark-row">
+          <div class="mark"><div class="letters">LS</div><div class="rule"></div></div>
+          <div class="idx-text">House 10 · <span class="div-text">FOOD</span></div>
+        </div>
         <div class="name">The Little Shell <em>Catering</em></div>
         <div class="desc">Food import and export, seafood supply chain, food logistics, restaurant supply, central kitchen support and catering — the group's full food platform.</div>
         <div class="brands">Seafood · Logistics · Catering</div>
@@ -1121,14 +1450,16 @@
     <div class="research-grid">
       <div class="research-text">
         <div class="eyebrow"><span class="roman">IV.</span>Research &amp; Innovation</div>
-        <h2 class="h2">Materials that <span style="font-style:italic;color:var(--ember)">change</span> how Australia builds.</h2>
-        <p class="body-copy dropcap">Through Promod, the group operates a research-led building materials function focused on sustainable construction systems, carbon-neutral material science, technical specifications and the development of construction-related intellectual property.</p>
-        <p class="body-copy">Our work is undertaken in collaboration with leading Australian research institutions — providing the technical validation pathway from laboratory to commercial product.</p>
+        <h2 class="h2">Science that <span style="font-style:italic;color:var(--ember)">changes</span> how Australia builds, eats and ages.</h2>
+        <p class="body-copy dropcap">The group operates two research-led functions: Promod for construction materials and sustainable building systems, and Natural Biotech for plant-, marine- and microbe-derived bioactive ingredients. Both function as translation pathways — from laboratory to compliant, commercial product.</p>
+        <p class="body-copy">Our work is undertaken with four Australian research universities and through standing collaborations with leading Chinese research groups in functional phospholipid synthesis and marine peptide chemistry.</p>
         <div class="research-partners">
           <div class="partner-label">Research Partners</div>
           <div class="partner-list">
-            <span>University of Melbourne</span>
             <span>University of Sydney</span>
+            <span>University of Melbourne</span>
+            <span>RMIT University</span>
+            <span>University of Adelaide</span>
           </div>
         </div>
       </div>
@@ -1138,15 +1469,236 @@
       </div>
     </div>
     <div class="research-stats">
-      <div class="research-stat"><div class="v">04<sup>+</sup></div><div class="k">Sustainable building material programs in active development.</div></div>
-      <div class="research-stat"><div class="v">12</div><div class="k">Technical specifications under validation across construction systems.</div></div>
-      <div class="research-stat"><div class="v">02</div><div class="k">Tier-1 Australian university research collaborations.</div></div>
+      <div class="research-stat"><div class="v">07<sup>+</sup></div><div class="k">Active R&amp;D programs across sustainable building, modular energy, and bioactive ingredients.</div></div>
+      <div class="research-stat"><div class="v">12</div><div class="k">Technical specifications and pre-clinical protocols under validation.</div></div>
+      <div class="research-stat"><div class="v">04</div><div class="k">Australian university research collaborations spanning materials, AI and biotech.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROJECTS ============ -->
+<section class="projects" data-section="V" data-title="Active Projects">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow"><span class="roman">V.</span>Active Projects</div>
+        <h2 class="h2">From the lab to <span style="font-style:italic;color:var(--ember)">commercial-ready</span>.</h2>
+      </div>
+      <div class="head-meta">
+        A working portfolio of translational projects — co-developed with Australian universities, Chinese research groups, and industry partners. Each is structured to move from research validation through pilot manufacturing to compliant product.
+      </div>
+    </div>
+
+    <div class="projects-grid">
+      <article class="project-card" data-link data-label="Open Project">
+        <div class="pc-head">
+          <span class="pc-id"><span class="pc-num">P / 01</span>AI-Enabled Modular Building Systems</span>
+          <span class="pc-pillar">Shelter</span>
+        </div>
+        <h3 class="pc-title">Smart Energy <em>Modular Buildings</em> — AI-enabled, low-carbon, scalable.</h3>
+        <p class="pc-desc">A scalable, AI-enabled, carbon-enhanced modular building system integrating carbon-based phase change materials (PCM), building-integrated photovoltaics (BIPV), battery storage and an AI-driven Building Energy Management System (BEMS) into prefabricated panels. Targets a 30–50% reduction in operational energy demand and 20–40 kWh/m²/year on-site renewable generation, with multi-state real-world demonstrations.</p>
+        <div class="pc-tags">
+          <span>TRL 3 → 5</span>
+          <span>CRC-P Pathway</span>
+          <span class="partner">USyd</span>
+          <span class="partner">RMIT</span>
+          <span class="partner">Promod</span>
+          <span class="partner">ALTA</span>
+          <span class="partner">Sisley Prestige Homes</span>
+          <span class="partner">Sotastack</span>
+        </div>
+      </article>
+
+      <article class="project-card" data-link data-label="Open Project">
+        <div class="pc-head">
+          <span class="pc-id"><span class="pc-num">P / 02</span>NMN · NAD<sup>+</sup> Precursor Capsules</span>
+          <span class="pc-pillar">Biotech</span>
+        </div>
+        <h3 class="pc-title">Enzymatic NMN <em>at scale</em> — manufactured in Australia.</h3>
+        <p class="pc-desc">Natural Biotech Pty Ltd's flagship 12,000 mg NMNs capsule line, manufactured in South Australia under a contracted research relationship with the University of Adelaide. Enzyme-catalysed synthesis pathway designed for purity, cost-efficient scale-up and a globally distributable supplement format addressing the well-documented age-linked decline in NAD<sup>+</sup>.</p>
+        <div class="pc-tags">
+          <span>Commercial · Live</span>
+          <span>Made in Australia</span>
+          <span class="partner">University of Adelaide</span>
+          <span class="partner">Natural Biotech Pty Ltd</span>
+        </div>
+      </article>
+
+      <article class="project-card" data-link data-label="Open Project">
+        <div class="pc-head">
+          <span class="pc-id"><span class="pc-num">P / 03</span>Specialty Plasmalogen Synthesis</span>
+          <span class="pc-pillar">Biotech</span>
+        </div>
+        <h3 class="pc-title">High-purity <em>plasmalogens</em> for cognitive health.</h3>
+        <p class="pc-desc">A specialty phospholipid R&amp;D programme developing high-purity plasmalogen (Pls) monomers via microbial enzymatic synthesis — addressing the membrane fluidity and free-radical-scavenging pathways implicated in age-related cognitive decline. Pre-clinical pipeline targeting functional food, supplement and pharmaceutical formats; clinical Phase 1–3 pathway under design.</p>
+        <div class="pc-tags">
+          <span>Pre-clinical</span>
+          <span>Functional Food + Pharma</span>
+          <span class="partner">Zhejiang University (Prof. Tian)</span>
+          <span class="partner">Natural Biotech</span>
+        </div>
+      </article>
+
+      <article class="project-card" data-link data-label="Open Project">
+        <div class="pc-head">
+          <span class="pc-id"><span class="pc-num">P / 04</span>Tuna-Derived Anserine Peptides</span>
+          <span class="pc-pillar">Biotech</span>
+        </div>
+        <h3 class="pc-title">Marine peptides for <em>uric acid</em> and anti-fatigue.</h3>
+        <p class="pc-desc">Patented (ZL202211553053.7) enzymatic process producing bluefin tuna-derived small peptides containing 2–10% anserine — a buffering dipeptide with demonstrated XOD/ADA-pathway inhibition. Targets the hyperuricemia (180M+ patients in China) and anti-fatigue specialty-food categories with a clinically informed natural alternative to allopurinol.</p>
+        <div class="pc-tags">
+          <span>Patent · ZL202211553053.7</span>
+          <span>Specialty Food</span>
+          <span class="partner">Lan Kun Marine Biotech</span>
+        </div>
+      </article>
+
+      <article class="project-card" data-link data-label="Open Project">
+        <div class="pc-head">
+          <span class="pc-id"><span class="pc-num">P / 05</span>Alpha Shaper · Albio</span>
+          <span class="pc-pillar">Biotech</span>
+        </div>
+        <h3 class="pc-title">Carbohydrate-absorption <em>chewable</em> tablets.</h3>
+        <p class="pc-desc">A 100% Australian-owned chewable tablet line developed under the Albio brand. Pure plant extracts inhibit carbohydrate absorption to support a sugar-controlled metabolic pathway — positioned as a clinically considered alternative to dieting, stimulant fat-burners and surgical interventions across the weight-management category.</p>
+        <div class="pc-tags">
+          <span>Commercial · Live</span>
+          <span>100% Australian Owned</span>
+          <span>GMP · H&amp;L · Australian Made</span>
+        </div>
+      </article>
+
+      <article class="project-card" data-link data-label="Open Project">
+        <div class="pc-head">
+          <span class="pc-id"><span class="pc-num">P / 06</span>Sustainable Construction Materials</span>
+          <span class="pc-pillar">Shelter</span>
+        </div>
+        <h3 class="pc-title">Compliant panel composites for <em>net-zero</em> housing delivery.</h3>
+        <p class="pc-desc">Promod's standing R&amp;D function develops sustainable building material specifications, fire- and thermal-performance pathways, and IP suitable for prefabricated and standardised housing delivery — validated through accredited third-party testing (CSIRO Infrastructure Technologies, Warringtonfire Australia) and academic collaboration.</p>
+        <div class="pc-tags">
+          <span>Specifications + Compliance</span>
+          <span class="partner">University of Melbourne</span>
+          <span class="partner">University of Sydney</span>
+          <span class="partner">Promod</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PARTNERS ============ -->
+<section class="partners" data-section="VI" data-title="Partners">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow"><span class="roman">VI.</span>Research &amp; Industry Partners</div>
+        <h2 class="h2">A network of <span style="font-style:italic;color:var(--ember)">institutions</span> and <span style="font-style:italic;color:var(--ember)">operators</span>.</h2>
+      </div>
+      <div class="head-meta">
+        We work with four Australian universities, a leading Chinese research group, and a tight cohort of industry partners across architecture, residential construction, technology and legal services.
+      </div>
+    </div>
+
+    <div class="partners-carousel" aria-label="Research and industry partners">
+      <div class="partners-track">
+        <!-- First pass -->
+        <div class="partner-cell">
+          <div class="mark on-light pc-mark"><div class="letters">US</div><div class="rule"></div></div>
+          <div class="pc-info"><span class="name">University of <em>Sydney</em></span><span class="kind">Research · PCM Materials</span></div>
+        </div>
+        <div class="partner-cell">
+          <div class="mark on-light pc-mark"><div class="letters">UM</div><div class="rule"></div></div>
+          <div class="pc-info"><span class="name">University of <em>Melbourne</em></span><span class="kind">Research · Materials Science</span></div>
+        </div>
+        <div class="partner-cell">
+          <div class="mark on-light pc-mark"><div class="letters">RM</div><div class="rule"></div></div>
+          <div class="pc-info"><span class="name">RMIT <em>University</em></span><span class="kind">Research · Modular DfM + BIM</span></div>
+        </div>
+        <div class="partner-cell">
+          <div class="mark on-light pc-mark"><div class="letters">UA</div><div class="rule"></div></div>
+          <div class="pc-info"><span class="name">University of <em>Adelaide</em></span><span class="kind">Research · NMN + Biotech</span></div>
+        </div>
+        <div class="partner-cell">
+          <div class="mark on-light pc-mark"><div class="letters">ZJ</div><div class="rule"></div></div>
+          <div class="pc-info"><span class="name">Zhejiang <em>University</em></span><span class="kind">Research · Plasmalogens</span></div>
+        </div>
+        <div class="partner-cell">
+          <a class="partner-link" href="https://altaarchitecture.com" target="_blank" rel="noopener" data-link data-label="Visit">
+            <img class="logo-img" src="https://altaarchitecture.com/wp-content/themes/The_Mighty_Wonton/assets/img/alta_logo_word.svg" alt="ALTA Architecture" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+            <div class="pc-info" style="display:none"><span class="name">ALTA <em>Architecture</em></span><span class="kind">Industry · Architecture · Melbourne</span></div>
+          </a>
+        </div>
+        <div class="partner-cell">
+          <div class="mark on-light pc-mark"><div class="letters">SP</div><div class="rule"></div></div>
+          <div class="pc-info"><span class="name">Sisley <em>Prestige Homes</em></span><span class="kind">Industry · Residential Builder · Doncaster VIC</span></div>
+        </div>
+        <div class="partner-cell">
+          <div class="mark on-light pc-mark"><div class="letters">SS</div><div class="rule"></div></div>
+          <div class="pc-info"><span class="name">Sota<em>stack</em></span><span class="kind">Industry · AI + Digital Platform</span></div>
+        </div>
+        <div class="partner-cell">
+          <div class="mark on-light pc-mark"><div class="letters">LC</div><div class="rule"></div></div>
+          <div class="pc-info"><span class="name">Lexcord <em>Lawyers</em></span><span class="kind">Industry · Corporate Counsel</span></div>
+        </div>
+        <div class="partner-cell">
+          <div class="mark on-light pc-mark"><div class="letters">LK</div><div class="rule"></div></div>
+          <div class="pc-info"><span class="name">Lan Kun <em>Marine Biotech</em></span><span class="kind">Industry · Marine Peptides · Yantai</span></div>
+        </div>
+        <!-- Second pass (duplicated for seamless loop) -->
+        <div class="partner-cell" aria-hidden="true">
+          <div class="mark on-light pc-mark"><div class="letters">US</div><div class="rule"></div></div>
+          <div class="pc-info"><span class="name">University of <em>Sydney</em></span><span class="kind">Research · PCM Materials</span></div>
+        </div>
+        <div class="partner-cell" aria-hidden="true">
+          <div class="mark on-light pc-mark"><div class="letters">UM</div><div class="rule"></div></div>
+          <div class="pc-info"><span class="name">University of <em>Melbourne</em></span><span class="kind">Research · Materials Science</span></div>
+        </div>
+        <div class="partner-cell" aria-hidden="true">
+          <div class="mark on-light pc-mark"><div class="letters">RM</div><div class="rule"></div></div>
+          <div class="pc-info"><span class="name">RMIT <em>University</em></span><span class="kind">Research · Modular DfM + BIM</span></div>
+        </div>
+        <div class="partner-cell" aria-hidden="true">
+          <div class="mark on-light pc-mark"><div class="letters">UA</div><div class="rule"></div></div>
+          <div class="pc-info"><span class="name">University of <em>Adelaide</em></span><span class="kind">Research · NMN + Biotech</span></div>
+        </div>
+        <div class="partner-cell" aria-hidden="true">
+          <div class="mark on-light pc-mark"><div class="letters">ZJ</div><div class="rule"></div></div>
+          <div class="pc-info"><span class="name">Zhejiang <em>University</em></span><span class="kind">Research · Plasmalogens</span></div>
+        </div>
+        <div class="partner-cell" aria-hidden="true">
+          <a class="partner-link" href="https://altaarchitecture.com" target="_blank" rel="noopener">
+            <img class="logo-img" src="https://altaarchitecture.com/wp-content/themes/The_Mighty_Wonton/assets/img/alta_logo_word.svg" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+            <div class="pc-info" style="display:none"><span class="name">ALTA <em>Architecture</em></span><span class="kind">Industry · Architecture · Melbourne</span></div>
+          </a>
+        </div>
+        <div class="partner-cell" aria-hidden="true">
+          <div class="mark on-light pc-mark"><div class="letters">SP</div><div class="rule"></div></div>
+          <div class="pc-info"><span class="name">Sisley <em>Prestige Homes</em></span><span class="kind">Industry · Residential Builder · Doncaster VIC</span></div>
+        </div>
+        <div class="partner-cell" aria-hidden="true">
+          <div class="mark on-light pc-mark"><div class="letters">SS</div><div class="rule"></div></div>
+          <div class="pc-info"><span class="name">Sota<em>stack</em></span><span class="kind">Industry · AI + Digital Platform</span></div>
+        </div>
+        <div class="partner-cell" aria-hidden="true">
+          <div class="mark on-light pc-mark"><div class="letters">LC</div><div class="rule"></div></div>
+          <div class="pc-info"><span class="name">Lexcord <em>Lawyers</em></span><span class="kind">Industry · Corporate Counsel</span></div>
+        </div>
+        <div class="partner-cell" aria-hidden="true">
+          <div class="mark on-light pc-mark"><div class="letters">LK</div><div class="rule"></div></div>
+          <div class="pc-info"><span class="name">Lan Kun <em>Marine Biotech</em></span><span class="kind">Industry · Marine Peptides · Yantai</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="partners-foot">
+      <span><span class="pf-key">●</span> Research</span>
+      <span><span class="pf-key">●</span> Industry</span>
+      <span>Hover the strip to pause.</span>
     </div>
   </div>
 </section>
 
 <!-- ============ INVESTOR ============ -->
-<section class="investor" data-section="V" data-title="Capital">
+<section class="investor" data-section="VII" data-title="Capital">
   <div class="container">
     <div class="investor-grid">
       <div class="investor-left">
@@ -1167,23 +1719,28 @@
           <div class="rev">$45<span class="u">M</span></div>
         </div>
         <div class="investor-row">
+          <div class="div-name">Natural Biotech</div>
+          <div class="activities">NMN (NAD<sup>+</sup>) capsules, metabolic chewables, plasmalogen R&amp;D and marine bioactive peptides — manufactured in Australia, distributed globally.</div>
+          <div class="rev">$15<span class="u">M</span></div>
+        </div>
+        <div class="investor-row">
           <div class="div-name">Food Supply Chain</div>
           <div class="activities">Restaurants, seafood supply chains, central kitchen operations and customised event catering.</div>
           <div class="rev">$30<span class="u">M</span></div>
         </div>
         <div class="investor-row total">
           <div class="div-name">Total Group</div>
-          <div class="activities">Diversified food &amp; shelter operating platform.</div>
-          <div class="rev">$75<span class="u">M</span></div>
+          <div class="activities">Diversified shelter, biotech &amp; food operating platform.</div>
+          <div class="rev">$90<span class="u">M</span></div>
         </div>
-        <div class="investor-footnote">Indicative annual revenue profile · Australian operations.</div>
+        <div class="investor-footnote">Indicative annual revenue profile · Australian operations. Natural Biotech division includes a portion of recurring international supplement sales.</div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ============ FIELD NOTES ============ -->
-<section class="insights" data-section="VI" data-title="Field Notes">
+<section class="insights" data-section="VIII" data-title="Field Notes">
   <div class="container">
     <div class="insights-head">
       <h2 class="h2">Field Notes from across the group.</h2>
@@ -1217,8 +1774,18 @@
         </div>
         <div class="meta"><span class="cat">Research</span><span>Innovation</span><span>08 min</span></div>
         <h3>From lab bench to building site: validating sustainable panel composites.</h3>
-        <p>Promod's collaboration with two Australian universities is producing a translation pathway from material science to compliant construction product.</p>
+        <p>Promod's collaboration with four Australian universities is producing a translation pathway from material science to compliant construction product.</p>
         <div class="byline">Filed by <em>Dr. S. Okafor</em> · Promod Materials Lab · 22 Apr 2026</div>
+      </article>
+      <article class="article" data-link data-label="Read">
+        <div class="img">
+          <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=1000&q=80" alt="" onerror="this.style.background='#1E2A3A';this.removeAttribute('src')" />
+          <div class="frame">FN · 04</div>
+        </div>
+        <div class="meta"><span class="cat">Biotech</span><span>Field Note</span><span>05 min</span></div>
+        <h3>NAD<sup>+</sup>, plasmalogens and the case for translational longevity science.</h3>
+        <p>What turns a promising molecule into a manufacturable, regulated product is rarely the chemistry. It is the process — and the institutional capacity to scale it without losing the science.</p>
+        <div class="byline">Filed by <em>Dr. K. Tan</em> · Natural Biotech, Adelaide · 30 Apr 2026</div>
       </article>
     </div>
   </div>
@@ -1271,6 +1838,10 @@
         <li><a href="#" data-link data-label="Open">Procon Material</a></li>
         <li><a href="#" data-link data-label="Open">Promod Building Group</a></li>
         <li><a href="#" data-link data-label="Open">Advance Building Solutions</a></li>
+        <li><a href="#" data-link data-label="Open">Natural Biotech Pty Ltd</a></li>
+        <li><a href="#" data-link data-label="Open">Albio · Alpha Shaper</a></li>
+        <li><a href="#" data-link data-label="Open">Plasmalogen R&amp;D</a></li>
+        <li><a href="#" data-link data-label="Open">Marine Bioactive Peptides</a></li>
         <li><a href="#" data-link data-label="Open">The Little Shell Catering</a></li>
       </ul></div>
       <div class="footer-col"><h4>Investors</h4><ul>
@@ -1299,6 +1870,49 @@
 </footer>
 
 <script>
+  /* ============ ATMOSPHERIC HERO VIDEO ============
+   * Randomises between MP4 loops in ./media/atmos/ on each page load.
+   * Falls back silently to the static hero image if:
+   *   - User prefers reduced motion
+   *   - No video file is present (404)
+   *   - Browser blocks autoplay or codec
+   * Drop replacement MP4s into ./media/atmos/atmos-01.mp4 ... atmos-05.mp4.
+   */
+  (function () {
+    const v = document.getElementById('atmosVideo');
+    if (!v) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    // Loop pool — drop matching files into ./media/atmos/.
+    // Mapped (loosely) to the three pillars + neutral connectors so each
+    // refresh hints at a different facet of the group.
+    const loops = [
+      'media/atmos/atmos-01-dust.mp4',     // neutral · dust in a sunbeam
+      'media/atmos/atmos-02-rain.mp4',     // shelter · rain on metal
+      'media/atmos/atmos-03-leaves.mp4',   // biotech · light through leaves
+      'media/atmos/atmos-04-seafoam.mp4',  // food · sea swell at dawn
+      'media/atmos/atmos-05-ink.mp4'       // neutral · ink in water
+    ];
+    const pick = loops[Math.floor(Math.random() * loops.length)];
+
+    let armed = false;
+    function fail() {
+      if (armed) return;
+      armed = true;
+      v.remove();
+    }
+    v.addEventListener('error', fail, { once: true });
+    // If the video can't load metadata within 4s, assume the file isn't there.
+    setTimeout(() => { if (v.readyState === 0) fail(); }, 4000);
+    v.addEventListener('loadeddata', () => {
+      v.classList.add('is-ready');
+      v.play().catch(fail);
+    }, { once: true });
+
+    v.src = pick;
+    v.load();
+  })();
+
   /* ============ THE CURTAIN ============ */
   (function () {
     const curtain = document.getElementById('curtain');
