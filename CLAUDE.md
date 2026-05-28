@@ -14,16 +14,23 @@ A single-page marketing site for **East Adelaide Capital Group**, deployed to Gi
 
 ## File layout
 
-The published surface is intentionally tiny — most files in the working tree are *not* shipped:
+The published surface is intentionally tiny. Everything that ships lives at the repo root or under `assets/`; all source briefs, mockups and scratch files are tucked into `archive/`, which is **gitignored** and never reaches Pages.
 
-- `index.html` — the entire production site. Self-contained: embedded `<style>` and inline `<script>` at the bottom (~1300 lines of markup, then a single `<script>` block).
-- `main-logo.png`, `main-logo-icon.png` — the only assets that ship alongside `index.html`.
-- `mockup/` — design variants (edition-02 through edition-07). **Gitignored.** Useful as references when iterating on the live page, but never link to them from `index.html`.
-- `intro.md` — source brief describing the actual company (divisions, subsidiaries, revenue, academic partners). **Gitignored.** Authoritative source for *content* decisions; consult it before changing copy about business structure, revenue figures, or subsidiary names.
-- `EAGroup_logo.png` — gitignored; do not reference from `index.html`.
-- `Projects/`, `Improvements_web.pdf` — untracked working files, not part of the site.
+**Ships to Pages:**
 
-When adding new assets to the live site, also add them to `.gitignore`'s "Working files" comment block if they shouldn't ship.
+- `index.html` — the entire production site. Self-contained: embedded `<style>` and inline `<script>` at the bottom (~1700 lines of markup, then a single `<script>` block).
+- `main-logo.png`, `main-logo-icon.png` — primary brand logos.
+- `assets/` — additional shipped assets. `assets/partners/` holds the four research-partner university logos (`usyd.svg`, `unimelb.svg`, `rmit.svg`, `adelaide.svg`) referenced by the Research section.
+
+**Local-only, in `archive/` (gitignored — do not link to any of these from `index.html`):**
+
+- `archive/intro.md` — source brief describing the actual company (divisions, subsidiaries, revenue, academic partners). Authoritative source for *content* decisions; consult it before changing copy about business structure, revenue figures, or subsidiary names.
+- `archive/mockup/` — design variants (edition-02 through edition-07). Useful as references when iterating on the live page.
+- `archive/Projects/`, `archive/Improvements_web.pdf` — source project PDFs and the improvements brief.
+- `archive/EAGroup_logo.png` — superseded logo.
+- `archive/` also catches stray scratch/temp files.
+
+The whole `archive/` directory is gitignored. New shipped assets belong under `assets/` (or the root); new working/scratch files belong under `archive/`.
 
 ## Architecture of `index.html`
 
@@ -43,10 +50,10 @@ Top-to-bottom structure inside one file:
 
 ## Content conventions
 
-- **Brand voice & content of record**: `intro.md` is authoritative for subsidiary names, division structure, revenue figures ($45M Housing & Construction, $30M Food Supply Chain, $75M combined), and academic partners (University of Melbourne, University of Sydney). Don't invent or "round" these.
+- **Brand voice & content of record**: `archive/intro.md` and `archive/Improvements_web.pdf` are the source briefs for subsidiary names, division structure, revenue figures and academic partners; the figures currently rendered in `index.html` (three divisions — Shelter, Natural Biotech, Food — and the investor table totalling $90M) are the live source of truth. Consult both before changing business-structure copy; don't invent or "round" these.
 - **Numerals**: tabular numerals and ordinals use the `.num` class (which applies IBM Plex Mono with the right OpenType features). Use it for metrics, dates, frame numbers, Roman numerals in eyebrows.
 - **Editorial labels**: section eyebrows follow `<Roman>. <Title> <dot> <subtitle>` pattern — match the existing tone (filed/dispatch/frame language) rather than generic web copy.
 
 ## Working with mockups
 
-When the user asks to try a different visual direction, prefer copying patterns *from* `mockup/edition-0X.html` *into* `index.html` rather than linking out to mockups or duplicating `index.html`. The mockups are sketches; only `index.html` ships.
+When the user asks to try a different visual direction, prefer copying patterns *from* `archive/mockup/edition-0X.html` *into* `index.html` rather than linking out to mockups or duplicating `index.html`. The mockups are sketches; only `index.html` ships.

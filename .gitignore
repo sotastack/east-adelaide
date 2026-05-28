@@ -11,10 +11,6 @@ Thumbs.db
 *.bak
 
 # ─── Working files (not published) ──────────────
-# Design variants and source briefs stay local.
-# Only index.html, the two logo PNGs and media/ ship to Pages.
-mockup/
-intro.md
-EAGroup_logo.png
-Improvements_web.pdf
-Projects/
+# Source briefs, design mockups and scratch files live in archive/ and
+# stay local. Only index.html, the logo PNGs and assets/ ship to Pages.
+archive/
