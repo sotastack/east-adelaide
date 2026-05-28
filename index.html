@@ -521,17 +521,30 @@
   .research-text h2 .italic { color: var(--ember); }
   .research-text .body-copy { color: var(--slate); font-size: 17px; line-height: 1.7; max-width: 56ch; margin-bottom: 22px; }
   .research-partners {
-    margin-top: 56px; display: flex; gap: 56px; align-items: center;
-    border-top: 1px solid var(--hair-light); padding-top: 36px;
+    margin-top: 56px; display: flex; gap: clamp(36px, 4vw, 64px); align-items: center;
+    border-top: 1px solid var(--hair-light); padding-top: 40px; flex-wrap: wrap;
   }
-  .partner-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--stone); }
-  .partner-list { display: flex; gap: 44px; font-family: var(--display); font-size: 20px; color: var(--ink); font-variation-settings: "opsz" 24, "SOFT" 20; }
-  .partner-list span { position: relative; }
-  .partner-list span:not(:last-child)::after {
-    content: ""; position: absolute; right: -24px; top: 50%;
-    width: 3px; height: 3px; background: var(--copper); border-radius: 50%;
-    transform: translateY(-50%);
+  .partner-label {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--stone); flex-shrink: 0; line-height: 1.5;
   }
+  .partner-logos {
+    list-style: none; margin: 0; padding: 0;
+    display: flex; align-items: center; flex-wrap: wrap;
+    gap: clamp(32px, 3.6vw, 60px);
+  }
+  .partner-logos li { display: flex; align-items: center; }
+  .partner-logos img {
+    width: auto; display: block;
+    filter: grayscale(1) opacity(0.62);
+    transition: filter 0.45s ease;
+  }
+  .partner-logos li:hover img { filter: grayscale(0) opacity(1); }
+  /* optical sizing — each logo balanced to read as one tidy set */
+  .partner-logos .pl-usyd { height: 26px; }
+  .partner-logos .pl-unimelb { height: 38px; }
+  .partner-logos .pl-rmit { height: 29px; }
+  .partner-logos .pl-adelaide { height: 27px; }
   .research-figure { position: relative; aspect-ratio: 3/4; overflow: hidden; }
   .research-figure img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(0.18) contrast(1.05); }
   .research-figure .label {
@@ -846,8 +859,14 @@
     .research-grid { gap: 36px; }
     .research-text h2 { font-size: clamp(36px, 8vw, 72px); margin-bottom: 28px; }
     .research-text .body-copy { font-size: 15px; }
-    .research-partners { gap: 24px; margin-top: 36px; padding-top: 22px; flex-wrap: wrap; }
-    .partner-list { gap: 28px; font-size: 17px; flex-wrap: wrap; }
+    .research-partners { gap: 22px; margin-top: 36px; padding-top: 26px; flex-wrap: wrap; }
+    .partner-logos {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 26px 32px; align-items: center; justify-items: start; width: 100%;
+    }
+    .partner-logos .pl-unimelb { height: 36px; }
+    .partner-logos .pl-rmit { height: 26px; }
+    .partner-logos .pl-usyd, .partner-logos .pl-adelaide { height: 23px; }
     .research-stats { margin-top: 56px; }
     .research-stat { padding: 28px 22px 0; }
     .research-stat .v { font-size: 52px; }
@@ -1425,12 +1444,12 @@
         <p class="body-copy">Our work is undertaken with four Australian research universities and through standing collaborations with leading Chinese research groups in functional phospholipid synthesis and marine peptide chemistry.</p>
         <div class="research-partners">
           <div class="partner-label">Research Partners</div>
-          <div class="partner-list">
-            <span>University of Sydney</span>
-            <span>University of Melbourne</span>
-            <span>RMIT University</span>
-            <span>University of Adelaide</span>
-          </div>
+          <ul class="partner-logos">
+            <li><img class="pl-usyd" src="assets/partners/usyd.svg" alt="The University of Sydney" loading="lazy" /></li>
+            <li><img class="pl-unimelb" src="assets/partners/unimelb.svg" alt="The University of Melbourne" loading="lazy" /></li>
+            <li><img class="pl-rmit" src="assets/partners/rmit.svg" alt="RMIT University" loading="lazy" /></li>
+            <li><img class="pl-adelaide" src="assets/partners/adelaide.svg" alt="University of Adelaide" loading="lazy" /></li>
+          </ul>
         </div>
       </div>
       <div class="research-figure">
