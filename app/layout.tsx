@@ -1,6 +1,13 @@
 import type { Metadata } from "next";
 import { Fraunces, Instrument_Sans, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
+import "./chrome.css";
+import { ChromeProvider } from "@/components/chrome/ChromeProvider";
+import { Curtain } from "@/components/chrome/Curtain";
+import { CustomCursor } from "@/components/chrome/CustomCursor";
+import { Nav } from "@/components/chrome/Nav";
+import { RailLabel } from "@/components/chrome/RailLabel";
+import { Footer } from "@/components/chrome/Footer";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
@@ -41,7 +48,16 @@ export default function RootLayout({
       lang="en"
       className={`${fraunces.variable} ${instrumentSans.variable} ${ibmPlexMono.variable}`}
     >
-      <body>{children}</body>
+      <body>
+        <ChromeProvider>
+          <Curtain />
+          <CustomCursor />
+          <Nav />
+          <RailLabel />
+          {children}
+          <Footer />
+        </ChromeProvider>
+      </body>
     </html>
   );
 }
