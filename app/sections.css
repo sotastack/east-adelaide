@@ -853,6 +853,14 @@
   }
   a.pp-card:hover { background: var(--bone); }
   .pp-logo { height: 42px; width: auto; max-width: 150px; object-fit: contain; flex: none; }
+  /* CTA filler — fills the trailing grid cell instead of dead space */
+  .pp-card.pp-cta { background: var(--bone); }
+  .pp-card.pp-cta:hover { background: var(--cream); }
+  .pp-cta-mark {
+    width: 26px; height: 26px; flex: none; background: var(--copper);
+    border-radius: 5px; transform: rotate(45deg);
+  }
+  .pp-cta .pc-info .kind { color: var(--ember); }
   .pp-card .pc-info { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
   .pp-card .pc-info .name {
     font-family: var(--display); font-weight: 400; font-variation-settings: "opsz" 28, "SOFT" 20;

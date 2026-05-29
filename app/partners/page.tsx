@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { researchPartners, industryPartners, type Partner } from "@/lib/data/partners";
 import { SectionHead } from "@/components/ui/SectionHead";
 
@@ -46,6 +47,25 @@ function PartnerCard({ p }: { p: Partner }) {
   return <div className="pp-card">{body}</div>;
 }
 
+function PartnerCTA({ name, em, kind }: { name: string; em: string; kind: string }) {
+  return (
+    <Link
+      className="pp-card pp-cta"
+      href="/contact?topic=Partnership"
+      data-link
+      data-label="Enquire"
+    >
+      <span className="pp-cta-mark" aria-hidden="true" />
+      <div className="pc-info">
+        <span className="name">
+          {name} <em>{em}</em>
+        </span>
+        <span className="kind">{kind}</span>
+      </div>
+    </Link>
+  );
+}
+
 export default function PartnersPage() {
   return (
     <section className="partners-page" data-section="—" data-title="Partners">
@@ -80,6 +100,11 @@ export default function PartnersPage() {
             {researchPartners.map((p) => (
               <PartnerCard p={p} key={`${p.lead}-${p.em}`} />
             ))}
+            <PartnerCTA
+              name="Research"
+              em="collaboration"
+              kind="Open to new university partnerships →"
+            />
           </div>
         </div>
 
@@ -94,6 +119,11 @@ export default function PartnersPage() {
             {industryPartners.map((p) => (
               <PartnerCard p={p} key={`${p.lead}-${p.em}`} />
             ))}
+            <PartnerCTA
+              name="Partner"
+              em="with us"
+              kind={"Industry & supply enquiries →"}
+            />
           </div>
         </div>
       </div>
