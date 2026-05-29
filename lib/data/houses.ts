@@ -93,33 +93,6 @@ export const houseBands: HouseBand[] = [
         desc: "South Australian innovation company contracted to the University of Adelaide. Develops enzyme-catalysed NMN (β-Nicotinamide Mononucleotide) for NAD+ support — manufactured in Australia, distributed globally.",
         brands: "NMN · NAD+ · Longevity",
       },
-      {
-        id: "07",
-        division: "BIOTECH",
-        mark: "AS",
-        name: "Albio · Alpha",
-        em: "Shaper",
-        desc: "100% Australian-owned chewable tablet line — plant-extract carbohydrate-absorption inhibitors developed as a clinically considered alternative to dieting, surgery and stimulant-based weight-loss approaches.",
-        brands: "Metabolic · Sugar Control · OTC",
-      },
-      {
-        id: "08",
-        division: "BIOTECH",
-        mark: "PL",
-        name: "Plasmalogen",
-        em: "R&D",
-        desc: "Specialty phospholipid platform translating marine- and microbe-derived plasmalogens into food, supplement and pharmaceutical formats targeting cognitive health and neuroprotection. Lab partnership led with Prof. Tian, Zhejiang University.",
-        brands: "Cognitive · Pls · Neurology",
-      },
-      {
-        id: "09",
-        division: "BIOTECH",
-        mark: "MP",
-        name: "Marine Bioactive",
-        em: "Peptides",
-        desc: "Bluefin tuna-derived peptide platform incorporating anserine (2–10%) — an enzyme-buffering dipeptide with documented uric-acid reduction and anti-fatigue activity. Patented process (ZL202211553053.7) via Lan Kun Marine Biotech partnership.",
-        brands: "Anserine · Uric Acid · Anti-Fatigue",
-      },
     ],
   },
   {
@@ -129,7 +102,7 @@ export const houseBands: HouseBand[] = [
     meta: "Seafood logistics, central kitchen, restaurant supply and customised event catering across Victoria.",
     houses: [
       {
-        id: "10",
+        id: "07",
         division: "FOOD",
         mark: "LS",
         logo: "/logos/littleshell-logo.jpg",

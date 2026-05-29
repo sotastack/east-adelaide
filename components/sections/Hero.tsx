@@ -21,7 +21,7 @@ const metrics: Metric[] = [
   {
     idx: "02",
     label: "Operating Businesses",
-    value: "10",
+    value: "07",
     meta: "Materials, fabrication, biotech, food supply chain.",
   },
   {

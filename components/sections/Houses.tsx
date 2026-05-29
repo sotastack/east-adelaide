@@ -17,7 +17,7 @@ export function Houses() {
           eyebrow="Our Houses"
           title={
             <>
-              Ten houses.
+              Seven houses.
               <br />
               <span style={{ fontStyle: "italic", color: "var(--copper)" }}>
                 Three operating pillars.
