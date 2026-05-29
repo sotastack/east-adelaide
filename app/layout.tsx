@@ -32,13 +32,33 @@ const ibmPlexMono = IBM_Plex_Mono({
   variable: "--font-mono",
 });
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://east-adelaide.vercel.app";
+
+const description =
+  "A diversified Australian operating group across shelter, biotech and food — building materials and sustainable construction, natural bioscience, and integrated food supply chains.";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
     default: "East Adelaide Capital Group",
     template: "%s · East Adelaide Capital Group",
   },
-  description:
-    "A diversified Australian operating group across shelter, biotech and food.",
+  description,
+  applicationName: "East Adelaide Capital Group",
+  openGraph: {
+    type: "website",
+    siteName: "East Adelaide Capital Group",
+    title: "East Adelaide Capital Group",
+    description,
+    url: siteUrl,
+    locale: "en_AU",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "East Adelaide Capital Group",
+    description,
+  },
 };
 
 export default function RootLayout({

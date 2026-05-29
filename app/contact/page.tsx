@@ -31,8 +31,8 @@ export default function ContactPage() {
             </h2>
             <p className="lede">
               For investment, partnership, supply or media enquiries across the
-              group's shelter, biotech and food divisions — send a note and the
-              right team will respond.
+              group&rsquo;s shelter, biotech and food divisions — send a note and
+              the right team will respond.
             </p>
             <div className="contact-channels">
               {channels.map((c) => (
