@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Fraunces, Instrument_Sans, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import "./chrome.css";
+import "./sections.css";
 import { ChromeProvider } from "@/components/chrome/ChromeProvider";
 import { Curtain } from "@/components/chrome/Curtain";
 import { CustomCursor } from "@/components/chrome/CustomCursor";
