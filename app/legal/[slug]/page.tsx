@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { legalDocs, legalSlugs, getLegalDoc, COUNSEL_NOTE } from "@/lib/data/legal";
+import { legalSlugs, getLegalDoc } from "@/lib/data/legal";
 
 type Params = { params: Promise<{ slug: string }> };
 
@@ -41,8 +41,6 @@ export default async function LegalPage({ params }: Params) {
               ))}
             </div>
           ))}
-
-          <p className="legal-note">{COUNSEL_NOTE}</p>
         </div>
       </div>
     </section>

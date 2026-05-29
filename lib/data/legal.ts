@@ -6,9 +6,6 @@ export interface LegalDoc {
   sections: { heading: string; body: string[] }[];
 }
 
-const COUNSEL_NOTE =
-  "This document is a template provided for completeness of the website and should be reviewed and finalised by the group's legal counsel before it is relied upon.";
-
 export const legalDocs: LegalDoc[] = [
   {
     slug: "privacy",
@@ -137,5 +134,3 @@ export const legalSlugs = legalDocs.map((d) => d.slug);
 export function getLegalDoc(slug: string) {
   return legalDocs.find((d) => d.slug === slug);
 }
-
-export { COUNSEL_NOTE };

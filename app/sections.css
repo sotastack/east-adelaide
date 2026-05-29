@@ -877,6 +877,10 @@
     content: ""; position: absolute; left: 0; top: 21px; width: 10px; height: 1px; background: var(--copper);
   }
 
-  /* House logo (v2 #5) — shown in place of the monogram when a logo asset exists */
-  .house-logo { display: flex; align-items: center; min-height: 44px; }
-  .house-logo img { height: 32px; width: auto; max-width: 130px; object-fit: contain; }
+  /* House logo (v2 #5) — shown in place of the monogram when a logo asset
+     exists. Sits on a light chip so logos read on the dark Houses cards. */
+  .house-logo {
+    display: inline-flex; align-items: center; align-self: flex-start;
+    background: #fff; padding: 8px 12px; border-radius: 5px;
+  }
+  .house-logo img { height: 26px; width: auto; max-width: 124px; object-fit: contain; display: block; }
