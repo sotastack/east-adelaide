@@ -11,7 +11,7 @@ export const aboutSections: AboutSection[] = [
     roman: "01",
     title: "Our Company",
     paragraphs: [
-      "East Adelaide Capital Group is a diversified Australian operating group, headquartered in Victoria, with interests across three essentials of daily life: shelter, natural bioscience and food. The group is structured as a long-horizon operator — providing capital, governance and shared technical infrastructure to ten operating businesses while each retains its own brand, leadership and customer relationships.",
+      "East Adelaide Capital Group is a diversified Australian operating group, headquartered in Victoria, with interests across three essentials of daily life: shelter, natural bioscience and food. The group is structured as a long-horizon operator — providing capital, governance and shared technical infrastructure to seven operating businesses while each retains its own brand, leadership and customer relationships.",
       "Across its divisions the group represents an indicative combined annual revenue of approximately $90M, spanning building materials and sustainable construction, natural-bioscience product development, and integrated food supply chains. Inspired by the diversified industrial discipline of operators such as Wesfarmers, the group's intent is durable, compounding ownership rather than short-cycle trading.",
     ],
   },

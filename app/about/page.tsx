@@ -28,7 +28,7 @@ export default function AboutPage() {
           </h1>
           <p className="lede">
             Headquartered in Victoria, East Adelaide Capital Group owns and
-            operates ten businesses across the three essentials of daily life —
+            operates seven businesses across the three essentials of daily life —
             shelter, natural bioscience and food.
           </p>
         </div>

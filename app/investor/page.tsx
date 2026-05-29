@@ -13,7 +13,7 @@ const sections = [
     idx: "→",
     title: "Growth Strategy",
     paragraphs: [
-      "The group's growth strategy pairs organic expansion of its ten operating businesses with disciplined, complementary acquisition. Within each division — shelter, natural biotech and food — the intent is to deepen capability, secure supply and standardise the inputs that customers depend on.",
+      "The group's growth strategy pairs organic expansion of its seven operating businesses with disciplined, complementary acquisition. Within each division — shelter, natural biotech and food — the intent is to deepen capability, secure supply and standardise the inputs that customers depend on.",
       "Across divisions, the group invests in shared infrastructure: governance, capital allocation, research translation and route-to-market. A particular priority is moving bioscience products from validated R&D into compliant, globally distributed formats, manufactured in Australia.",
     ],
   },
