@@ -5,8 +5,8 @@ export interface House {
   mark: string;
   /** optional real logo path (e.g. /logos/houses/procon.svg); falls back to the monogram */
   logo?: string;
-  /** optional chip background behind the logo (default white); use for logos with a baked dark background */
-  logoBg?: string;
+  /** optional display height for the logo (e.g. "54px"); emblems read larger than wordmarks */
+  logoH?: string;
   name: string;
   em: string;
   desc: string;
@@ -32,7 +32,8 @@ export const houseBands: HouseBand[] = [
         id: "01",
         division: "SHELTER",
         mark: "TT",
-        logo: "/logos/tidytend-logo.jpg",
+        logo: "/logos/tidytend-emblem.png",
+        logoH: "54px",
         name: "Tidy Tend",
         em: "Global",
         desc: "Building materials import and export, construction materials supply, technical coordination and parent custodian of construction-related IP and know-how.",
@@ -52,6 +53,7 @@ export const houseBands: HouseBand[] = [
         division: "SHELTER",
         mark: "PM",
         logo: "/logos/procon-logo.svg",
+        logoH: "24px",
         name: "Procon",
         em: "Material",
         desc: "Aluminium building products and fabricated components platform serving residential, commercial and prefabricated construction systems.",
@@ -61,7 +63,8 @@ export const houseBands: HouseBand[] = [
         id: "04",
         division: "SHELTER",
         mark: "PB",
-        logo: "/logos/promod_logo.webp",
+        logo: "/logos/promod-logo.png",
+        logoH: "30px",
         name: "Promod Building",
         em: "Group",
         desc: "Prefabricated housing solutions and the group's R&D function — technical validation of new building materials, sustainable construction systems and academic collaboration.",
@@ -105,8 +108,8 @@ export const houseBands: HouseBand[] = [
         id: "07",
         division: "FOOD",
         mark: "LS",
-        logo: "/logos/littleshell-logo.jpg",
-        logoBg: "#000",
+        logo: "/logos/littleshell-cut.png",
+        logoH: "52px",
         name: "The Little Shell",
         em: "Catering",
         desc: "Food import and export, seafood supply chain, food logistics, restaurant supply, central kitchen support and catering — the group's full food platform.",

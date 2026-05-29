@@ -887,10 +887,7 @@
     content: ""; position: absolute; left: 0; top: 21px; width: 10px; height: 1px; background: var(--copper);
   }
 
-  /* House logo (v2 #5) — shown in place of the monogram when a logo asset
-     exists. Sits on a light chip so logos read on the dark Houses cards. */
-  .house-logo {
-    display: inline-flex; align-items: center; align-self: flex-start;
-    background: #fff; padding: 8px 12px; border-radius: 5px;
-  }
-  .house-logo img { height: 26px; width: auto; max-width: 124px; object-fit: contain; display: block; }
+  /* House logo (v2 #5) — sits directly on the dark Houses card (no chip).
+     Logos are white-on-transparent or cut-out emblems so they blend in. */
+  .house-logo { display: inline-flex; align-items: center; align-self: flex-start; }
+  .house-logo img { height: 30px; width: auto; max-width: 160px; object-fit: contain; display: block; }
