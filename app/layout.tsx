@@ -33,7 +33,7 @@ const ibmPlexMono = IBM_Plex_Mono({
 });
 
 const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://east-adelaide.vercel.app";
+  process.env.NEXT_PUBLIC_SITE_URL || "https://www.eastadelaidegroup.com.au";
 
 const description =
   "A diversified Australian operating group across shelter, biotech and food — building materials and sustainable construction, natural bioscience, and integrated food supply chains.";
