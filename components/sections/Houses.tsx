@@ -1,27 +1,7 @@
 import { Fragment } from "react";
 import { houseBands } from "@/lib/data/houses";
 import { SectionHead } from "@/components/ui/SectionHead";
-import { Arrow } from "@/components/ui/Arrow";
-
-function Mark({ mark }: { mark: string }) {
-  if (mark === "leaf") {
-    return (
-      <div className="nb-leaf" aria-hidden="true">
-        <svg viewBox="0 0 80 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <ellipse cx="14" cy="20" rx="10" ry="18" fill="#CFE6D6" />
-          <ellipse cx="32" cy="20" rx="10" ry="18" fill="#3FB078" />
-          <ellipse cx="50" cy="20" rx="10" ry="18" fill="#1F7A4A" />
-        </svg>
-      </div>
-    );
-  }
-  return (
-    <div className="mark">
-      <div className="letters">{mark}</div>
-      <div className="rule"></div>
-    </div>
-  );
-}
+import { MaisonCard } from "@/components/ui/MaisonCard";
 
 export function Houses() {
   return (
@@ -58,22 +38,7 @@ export function Houses() {
                 <span className="pb-meta">{band.meta}</span>
               </div>
               {band.houses.map((h) => (
-                <div className="maison" data-link data-label="Open House" key={h.id}>
-                  <div className="mark-row">
-                    <Mark mark={h.mark} />
-                    <div className="idx-text">
-                      House {h.id} · <span className="div-text">{h.division}</span>
-                    </div>
-                  </div>
-                  <div className="name">
-                    {h.name} <em>{h.em}</em>
-                  </div>
-                  <div className="desc">{h.desc}</div>
-                  <div className="brands">{h.brands}</div>
-                  <div className="arrow-wrap">
-                    <Arrow />
-                  </div>
-                </div>
+                <MaisonCard house={h} key={h.id} />
               ))}
             </Fragment>
           ))}

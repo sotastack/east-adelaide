@@ -707,3 +707,24 @@
     .partner-cell .pc-info .name { font-size: 16px; }
     .pillar-trio { gap: 48px; }
   }
+
+  /* ============ INNER-PAGE HELPERS (v2) ============ */
+  .division-detail {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 56px;
+    align-items: start; margin-top: 48px;
+  }
+  .division-detail .subsidiary-list { margin-top: 0; }
+  .page-intro { padding: 140px 0 0; }
+  .page-back {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--stone); margin-bottom: 28px;
+  }
+  .page-back:hover { color: var(--ember); }
+  .project-detail { padding: 140px 0 40px; max-width: 60ch; }
+  .project-detail .pc-desc { font-size: 18px; line-height: 1.7; margin: 28px 0; }
+  @media (max-width: 1000px) {
+    .division-detail { grid-template-columns: 1fr; gap: 40px; }
+    .page-intro { padding: 110px 0 0; }
+    .project-detail { padding: 110px 0 32px; }
+  }
