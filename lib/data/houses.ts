@@ -5,6 +5,8 @@ export interface House {
   mark: string;
   /** optional real logo path (e.g. /logos/houses/procon.svg); falls back to the monogram */
   logo?: string;
+  /** optional chip background behind the logo (default white); use for logos with a baked dark background */
+  logoBg?: string;
   name: string;
   em: string;
   desc: string;
@@ -131,6 +133,7 @@ export const houseBands: HouseBand[] = [
         division: "FOOD",
         mark: "LS",
         logo: "/logos/littleshell-logo.jpg",
+        logoBg: "#000",
         name: "The Little Shell",
         em: "Catering",
         desc: "Food import and export, seafood supply chain, food logistics, restaurant supply, central kitchen support and catering — the group's full food platform.",

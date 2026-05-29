@@ -8,9 +8,6 @@ const houses = [
   "Promod Building Group",
   "Advance Building Solutions",
   "Natural Biotech Pty Ltd",
-  "Albio · Alpha Shaper",
-  "Plasmalogen R&D",
-  "Marine Bioactive Peptides",
   "The Little Shell Catering",
 ];
 

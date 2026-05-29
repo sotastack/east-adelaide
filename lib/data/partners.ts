@@ -17,7 +17,7 @@ export const universities: Partner[] = [
 
 export const researchPartners: Partner[] = [
   ...universities,
-  { letters: "ZJ", lead: "Zhejiang", em: "University", kind: "Research · Plasmalogens (China)" },
+  { letters: "ZJ", logo: "/logos/zhejinguni-logo.png", lead: "Zhejiang", em: "University", kind: "Research · Plasmalogens (China)" },
 ];
 
 // Industry partners. Drop real logos into public/logos/partners/ and set `logo`.
@@ -31,7 +31,7 @@ export const industryPartners: Partner[] = [
     kind: "Industry · Architecture · Melbourne",
   },
   { letters: "SP", lead: "Sisley", em: "Prestige Homes", kind: "Industry · Residential Builder · Doncaster VIC" },
-  { letters: "SS", lead: "Sota", em: "stack", kind: "Industry · AI + Digital Platform" },
+  { letters: "SS", logo: "/logos/sotastack-logo.png", lead: "Sota", em: "stack", kind: "Industry · AI + Digital Platform" },
   { letters: "LC", lead: "Lexcord", em: "Lawyers", kind: "Industry · Corporate Counsel" },
   { letters: "LK", lead: "Lan Kun", em: "Marine Biotech", kind: "Industry · Marine Peptides · Yantai" },
 ];
