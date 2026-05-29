@@ -24,7 +24,7 @@ const partners: Partner[] = [
     kind: "Industry · Architecture · Melbourne",
   },
   { letters: "SP", lead: "Sisley", em: "Prestige Homes", kind: "Industry · Residential Builder · Doncaster VIC" },
-  { letters: "SS", lead: "Sota", em: "stack", kind: "Industry · AI + Digital Platform" },
+  { letters: "SS", lead: "Sotastack", em: "Pty Ltd", kind: "Industry · AI + Digital Platform" },
   { letters: "LC", lead: "Lexcord", em: "Lawyers", kind: "Industry · Corporate Counsel" },
   { letters: "LK", lead: "Lan Kun", em: "Marine Biotech", kind: "Industry · Marine Peptides · Yantai" },
 ];
