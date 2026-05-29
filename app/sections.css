@@ -853,6 +853,16 @@
   }
   a.pp-card:hover { background: var(--bone); }
   .pp-logo { height: 42px; width: auto; max-width: 150px; object-fit: contain; flex: none; }
+  .pp-card .pc-info { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+  .pp-card .pc-info .name {
+    font-family: var(--display); font-weight: 400; font-variation-settings: "opsz" 28, "SOFT" 20;
+    font-size: 19px; line-height: 1.1; color: var(--ink);
+  }
+  .pp-card .pc-info .name em { font-style: italic; color: var(--ember); }
+  .pp-card .pc-info .kind {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--stone); line-height: 1.4;
+  }
   @media (max-width: 1000px) {
     .partners-page { padding: 110px 0 90px; }
     .pp-grid { grid-template-columns: 1fr; }

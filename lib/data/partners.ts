@@ -17,14 +17,14 @@ export const universities: Partner[] = [
 
 export const researchPartners: Partner[] = [
   ...universities,
-  { letters: "ZJ", logo: "/logos/zhejinguni-logo.png", lead: "Zhejiang", em: "University", kind: "Research · Plasmalogens (China)" },
+  { letters: "ZJ", logo: "/logos/zhejiang-logo.svg", lead: "Zhejiang", em: "University", kind: "Research · Plasmalogens (China)" },
 ];
 
 // Industry partners. Drop real logos into public/logos/partners/ and set `logo`.
 export const industryPartners: Partner[] = [
   {
     letters: "AL",
-    logo: "https://altaarchitecture.com/wp-content/themes/The_Mighty_Wonton/assets/img/alta_logo_word.svg",
+    logo: "/logos/alta-logo.svg",
     href: "https://altaarchitecture.com",
     lead: "ALTA",
     em: "Architecture",
