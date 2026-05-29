@@ -8,12 +8,19 @@ export const metadata: Metadata = {
 };
 
 const channels = [
-  { k: "General", v: "hello@eastadelaide.com.au" },
-  { k: "Investor Relations", v: "investors@eastadelaide.com.au" },
-  { k: "Headquarters", v: "Victoria · Australia" },
+  { k: "General", v: "admin@eastadelaidegroup.com.au" },
+  { k: "Compliance", v: "compliance@eastadelaidegroup.com.au" },
+  { k: "Security & Whistleblower", v: "security@eastadelaidegroup.com.au" },
+  { k: "Headquarters", v: "Unit A6, 2A Westall Road, Clayton, Victoria 3168" },
 ];
 
-export default function ContactPage() {
+export default async function ContactPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ topic?: string }>;
+}) {
+  const { topic } = await searchParams;
+
   return (
     <section className="contact" data-section="IX" data-title="Contact">
       <div className="container">
@@ -44,7 +51,7 @@ export default function ContactPage() {
             </div>
           </div>
 
-          <ContactForm />
+          <ContactForm initialTopic={topic} />
         </div>
       </div>
     </section>

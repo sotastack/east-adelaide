@@ -25,7 +25,14 @@ export function MaisonCard({ house }: { house: House }) {
   return (
     <div className="maison" data-link data-label="Open House">
       <div className="mark-row">
-        <Mark mark={house.mark} />
+        {house.logo ? (
+          <div className="house-logo">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={house.logo} alt={`${house.name} ${house.em}`} loading="lazy" />
+          </div>
+        ) : (
+          <Mark mark={house.mark} />
+        )}
         <div className="idx-text">
           House {house.id} · <span className="div-text">{house.division}</span>
         </div>

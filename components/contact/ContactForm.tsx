@@ -14,8 +14,10 @@ const topics = [
   "Media & press",
 ];
 
-export function ContactForm() {
+export function ContactForm({ initialTopic }: { initialTopic?: string }) {
   const [state, action, pending] = useActionState(submitContact, initial);
+  const defaultTopic =
+    initialTopic && topics.includes(initialTopic) ? initialTopic : topics[0];
 
   if (state.status === "success") {
     return (
@@ -59,7 +61,7 @@ export function ContactForm() {
 
       <div className="field">
         <label htmlFor="topic">Topic</label>
-        <select id="topic" name="topic" defaultValue={topics[0]}>
+        <select id="topic" name="topic" defaultValue={defaultTopic}>
           {topics.map((t) => (
             <option key={t} value={t}>
               {t}

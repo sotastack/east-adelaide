@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ReplayLink } from "./ReplayLink";
 
 const houses = [
   "Tidy Tend Global",
@@ -11,6 +12,34 @@ const houses = [
   "Plasmalogen R&D",
   "Marine Bioactive Peptides",
   "The Little Shell Catering",
+];
+
+const group = [
+  { label: "Our Company", href: "/about#our-company" },
+  { label: "Leadership", href: "/about#leadership" },
+  { label: "Board & Governance", href: "/about#governance" },
+  { label: "Sustainability", href: "/about#sustainability" },
+];
+
+const investors = [
+  { label: "Investor Centre", href: "/investor" },
+  { label: "Financial Footprint", href: "/investor#financial-footprint" },
+  { label: "Growth Strategy", href: "/investor#growth-strategy" },
+  { label: "Capital Markets", href: "/investor#capital-markets" },
+];
+
+const connect = [
+  { label: "Contact", href: "/contact" },
+  { label: "Careers", href: "/contact?topic=Careers" },
+  { label: "Media & Press", href: "/insights" },
+  { label: "Field Notes", href: "/insights" },
+];
+
+const legal = [
+  { label: "Privacy", href: "/legal/privacy" },
+  { label: "Terms", href: "/legal/terms" },
+  { label: "Modern Slavery Statement", href: "/legal/modern-slavery" },
+  { label: "Whistleblower Policy", href: "/legal/whistleblower" },
 ];
 
 export function Footer() {
@@ -34,33 +63,20 @@ export function Footer() {
             <div className="abn">
               East Adelaide Capital Group Pty Ltd
               <br />
-              Headquartered in Victoria, Australia
+              Unit A6, 2A Westall Road, Clayton, Victoria 3168
             </div>
           </div>
 
           <div className="footer-col">
             <h4>Group</h4>
             <ul>
-              <li>
-                <a href="#" data-link data-label="View">
-                  Our Company
-                </a>
-              </li>
-              <li>
-                <a href="#" data-link data-label="View">
-                  Leadership
-                </a>
-              </li>
-              <li>
-                <a href="#" data-link data-label="View">
-                  Board &amp; Governance
-                </a>
-              </li>
-              <li>
-                <a href="#" data-link data-label="View">
-                  Sustainability
-                </a>
-              </li>
+              {group.map((l) => (
+                <li key={l.label}>
+                  <Link href={l.href} data-link data-label="View">
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -80,52 +96,26 @@ export function Footer() {
           <div className="footer-col">
             <h4>Investors</h4>
             <ul>
-              <li>
-                <Link href="/investor" data-link data-label="Enter">
-                  Investor Centre
-                </Link>
-              </li>
-              <li>
-                <Link href="/investor" data-link data-label="View">
-                  Financial Footprint
-                </Link>
-              </li>
-              <li>
-                <Link href="/investor" data-link data-label="Read">
-                  Growth Strategy
-                </Link>
-              </li>
-              <li>
-                <Link href="/investor" data-link data-label="View">
-                  Capital Markets
-                </Link>
-              </li>
+              {investors.map((l) => (
+                <li key={l.label}>
+                  <Link href={l.href} data-link data-label="Enter">
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
           <div className="footer-col">
             <h4>Connect</h4>
             <ul>
-              <li>
-                <Link href="/contact" data-link data-label="Contact">
-                  Contact
-                </Link>
-              </li>
-              <li>
-                <a href="#" data-link data-label="Browse">
-                  Careers
-                </a>
-              </li>
-              <li>
-                <a href="#" data-link data-label="View">
-                  Media &amp; Press
-                </a>
-              </li>
-              <li>
-                <a href="#" data-link data-label="Read">
-                  Field Notes
-                </a>
-              </li>
+              {connect.map((l) => (
+                <li key={l.label}>
+                  <Link href={l.href} data-link data-label="View">
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
@@ -135,18 +125,12 @@ export function Footer() {
             © 2026 East Adelaide Capital Group Pty Ltd. All rights reserved.
           </span>
           <div className="links">
-            <a href="#" data-link data-label="Read">
-              Privacy
-            </a>
-            <a href="#" data-link data-label="Read">
-              Terms
-            </a>
-            <a href="#" data-link data-label="Read">
-              Modern Slavery Statement
-            </a>
-            <a href="#" data-link data-label="Read">
-              Whistleblower Policy
-            </a>
+            {legal.map((l) => (
+              <Link key={l.label} href={l.href} data-link data-label="Read">
+                {l.label}
+              </Link>
+            ))}
+            <ReplayLink />
           </div>
         </div>
       </div>

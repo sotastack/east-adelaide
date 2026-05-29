@@ -26,14 +26,18 @@ export function Cta() {
               Speak with our team
               <Arrow />
             </Link>
-            <Link href="/investor" data-link data-label="Enquire">
+            <Link
+              href="/contact?topic=Investor%20relations"
+              data-link
+              data-label="Enquire"
+            >
               Investor enquiries
               <Arrow />
             </Link>
-            <a href="#" data-link data-label="Browse">
+            <Link href="/contact?topic=Careers" data-link data-label="Browse">
               Careers at the group
               <Arrow />
-            </a>
+            </Link>
           </div>
         </div>
       </div>

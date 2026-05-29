@@ -6,10 +6,12 @@ import { useEffect, useState } from "react";
 import { useChrome } from "./ChromeProvider";
 
 const NAV = [
+  { href: "/about", label: "About", cursor: "Read" },
   { href: "/divisions", label: "Divisions", cursor: "Explore" },
   { href: "/research", label: "Research", cursor: "View" },
   { href: "/projects", label: "Projects", cursor: "View" },
-  { href: "/contact", label: "Contact", cursor: "Contact" },
+  { href: "/partners", label: "Partners", cursor: "View" },
+  { href: "/insights", label: "Insights", cursor: "Read" },
 ] as const;
 
 export function Nav() {
@@ -24,7 +26,6 @@ export function Nav() {
     };
   }, [menuOpen]);
 
-  // Close the mobile menu whenever the route changes.
   useEffect(() => {
     setMenuOpen(false);
   }, [pathname]);
@@ -76,20 +77,14 @@ export function Nav() {
             </ul>
 
             <div className="nav-right">
-              <button
-                type="button"
-                className="replay-intro"
+              <Link
+                href="/contact"
+                className={`nav-contact${isActive("/contact") ? " is-active" : ""}`}
                 data-link
-                data-label="Replay"
-                onClick={replay}
+                data-label="Contact"
               >
-                Replay Intro
-              </button>
-              <div className="lang">
-                <span>EN</span>
-                <em>/</em>
-                <span>中文</span>
-              </div>
+                Contact
+              </Link>
               <Link
                 href="/investor"
                 className="investor-link"
@@ -127,6 +122,11 @@ export function Nav() {
               </Link>
             </li>
           ))}
+          <li>
+            <Link href="/contact" onClick={() => setMenuOpen(false)}>
+              Contact
+            </Link>
+          </li>
         </ul>
         <div className="mm-extras">
           <Link
@@ -136,11 +136,6 @@ export function Nav() {
           >
             Investors <span>→</span>
           </Link>
-          <div className="mm-lang">
-            <span>EN</span>
-            <em>/</em>
-            <span>中文</span>
-          </div>
           <button
             type="button"
             className="mm-replay"

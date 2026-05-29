@@ -63,7 +63,7 @@ export async function submitContact(
 
   try {
     const resend = new Resend(apiKey);
-    const to = process.env.CONTACT_TO_EMAIL || "hello@eastadelaide.com.au";
+    const to = process.env.CONTACT_TO_EMAIL || "admin@eastadelaidegroup.com.au";
     const from =
       process.env.CONTACT_FROM_EMAIL ||
       "East Adelaide Capital Group <onboarding@resend.dev>";

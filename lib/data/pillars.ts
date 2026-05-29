@@ -5,6 +5,8 @@ export interface Subsidiary {
 
 export interface Pillar {
   slug: string;
+  /** optional real division logo path (e.g. /logos/divisions/shelter.svg) */
+  logo?: string;
   roman: string;
   corner: string;
   image: string;

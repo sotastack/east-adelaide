@@ -1,17 +1,4 @@
-const partnerLogos = [
-  { cls: "pl-usyd", src: "/partners/usyd.svg", alt: "The University of Sydney" },
-  {
-    cls: "pl-unimelb",
-    src: "/partners/unimelb.svg",
-    alt: "The University of Melbourne",
-  },
-  { cls: "pl-rmit", src: "/partners/rmit.svg", alt: "RMIT University" },
-  {
-    cls: "pl-adelaide",
-    src: "/partners/adelaide.svg",
-    alt: "University of Adelaide",
-  },
-];
+import { universities } from "@/lib/data/partners";
 
 const stats = [
   {
@@ -33,6 +20,9 @@ const stats = [
 ];
 
 export function Research() {
+  // Duplicate the logo set so the marquee can loop seamlessly.
+  const loop = [...universities, ...universities];
+
   return (
     <section className="research" data-section="IV" data-title="Research">
       <div className="container">
@@ -61,17 +51,6 @@ export function Research() {
               groups in functional phospholipid synthesis and marine peptide
               chemistry.
             </p>
-            <div className="research-partners">
-              <div className="partner-label">Research Partners</div>
-              <ul className="partner-logos">
-                {partnerLogos.map((l) => (
-                  <li key={l.cls}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img className={l.cls} src={l.src} alt={l.alt} loading="lazy" />
-                  </li>
-                ))}
-              </ul>
-            </div>
           </div>
           <div className="research-figure">
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -85,6 +64,21 @@ export function Research() {
             </div>
           </div>
         </div>
+
+        <div className="uni-band">
+          <div className="partner-label">Research Partners</div>
+          <div className="uni-carousel" aria-label="University research partners">
+            <div className="uni-track">
+              {loop.map((u, i) => (
+                <div className="uni-item" key={i} aria-hidden={i >= universities.length || undefined}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={u.logo} alt={i < universities.length ? `${u.lead} ${u.em}` : ""} loading="lazy" />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
         <div className="research-stats">
           {stats.map((s, i) => (
             <div className="research-stat" key={i}>

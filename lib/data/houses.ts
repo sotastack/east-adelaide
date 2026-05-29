@@ -3,6 +3,8 @@ export interface House {
   division: string;
   /** two-letter monogram, or "leaf" for the Natural Biotech mark */
   mark: string;
+  /** optional real logo path (e.g. /logos/houses/procon.svg); falls back to the monogram */
+  logo?: string;
   name: string;
   em: string;
   desc: string;

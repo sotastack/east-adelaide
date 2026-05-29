@@ -4,56 +4,41 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this repo is
 
-A single-page marketing site for **East Adelaide Capital Group**, deployed to GitHub Pages from the `main` branch of `sotastack/east-adelaide`. There is no build step, no package manager, and no framework — everything is hand-authored HTML, CSS, and vanilla JS inside one file.
+The marketing site for **East Adelaide Capital Group**, a diversified Australian operating group across shelter, biotech and food. It is a **Next.js (App Router) + TypeScript** application, deployed to **Vercel** from the `main` branch of `sotastack/east-adelaide`.
+
+> History: the site began as a single hand-authored `index.html`. That approved v1 design is preserved at `archive/index-reference.html` (gitignored) and is the visual source of truth — the React components are ports of it. Don't treat it as live.
 
 ## Commands
 
-- **Preview locally**: open `index.html` directly in a browser, or `python3 -m http.server 8000` from the repo root and visit `http://localhost:8000`.
-- **Publish**: push to `main`. GitHub Pages serves the repo root automatically; there is no CI.
-- No tests, no linter, no formatter. Don't introduce them unless asked.
+- **Dev**: `npm install`, then `npm run dev` (http://localhost:3000). `cp .env.example .env.local` for the contact form / site URL.
+- **Build / checks**: `npm run build` (runs the TS checker), `npm run lint`, `npx tsc --noEmit`.
+- **Deploy**: push `main` → Vercel auto-deploys. `main` is production, so don't push half-finished states; verify (`build` + `lint`) first.
 
-## File layout
+## Architecture
 
-The published surface is intentionally tiny. Everything that ships lives at the repo root or under `assets/`; all source briefs, mockups and scratch files are tucked into `archive/`, which is **gitignored** and never reaches Pages.
+- `app/` — routes. `layout.tsx` wires the three fonts via `next/font` and renders the shared chrome around `{children}`. Global CSS, imported once in `layout.tsx`:
+  - `app/globals.css` — `:root` design tokens (`--ink`, `--bone`, `--paper`, `--copper`, `--ember`, font stacks `--display`/`--sans`/`--mono`, `--max`/`--gutter`/`--rail`), base reset, `.container`, grain overlay, Lenis base rules. **Edit tokens here, never hard-code.**
+  - `app/chrome.css` — nav, curtain, custom cursor, rail label, mobile menu, footer (kept global; coupled to `body`-state classes).
+  - `app/sections.css` — all page-section styles + shared editorial utilities (`.eyebrow`/`.display`/`.h2`/`.h3`/`.lede`/`.num`/`.dropcap`) + inner-page helpers. Ported verbatim from v1, extended for v2 pages.
+- `components/chrome/` — `ChromeProvider` (curtain state via `sessionStorage('eac_intro_seen')` + 2.4s auto-rise + `replay`; hosts Lenis smooth scroll), `Curtain`, `CustomCursor` (delegated `[data-link]`/`data-label` hover), `Nav` (+ mobile menu), `RailLabel` (IntersectionObserver over `[data-section]`/`data-title`; `data-rail-theme="dark"` for dark sections), `Footer`, `ReplayLink`.
+- `components/sections/` — the homepage sections (Hero, Pillars, Houses, Research, Projects, Partners, Investor, FieldNotes, Cta). Several are reused on their dedicated pages.
+- `components/ui/` — shared `SectionHead`, `Arrow`, `MaisonCard`, `ProjectCard`, `ArticleCard`.
+- `lib/data/` — typed content: `pillars`, `houses`, `projects` (+ `projectSlugs`, `projectDetails`), `investor`, `partners`, `insights`, `about`, `legal`.
+- `lib/actions/contact.ts` — `'use server'` contact action (zod validation + Resend; honeypot). Falls back to a clear "not configured" message without `RESEND_API_KEY`.
+- `public/` — `main-logo*.png`, `partners/*.svg` (university logos), and `logos/` for real house/division/partner logos dropped in later (see `public/logos/README.md`).
 
-**Ships to Pages:**
+## Routes
 
-- `index.html` — the entire production site. Self-contained: embedded `<style>` and inline `<script>` at the bottom (~1700 lines of markup, then a single `<script>` block).
-- `main-logo.png`, `main-logo-icon.png` — primary brand logos.
-- `assets/` — additional shipped assets. `assets/partners/` holds the four research-partner university logos (`usyd.svg`, `unimelb.svg`, `rmit.svg`, `adelaide.svg`) referenced by the Research section.
+`/`, `/about`, `/divisions` (+ `/divisions/[slug]`), `/research`, `/projects` (+ `/projects/[slug]`), `/partners`, `/insights` (+ `/insights/[slug]`), `/investor`, `/contact`, `/legal/[slug]`. All prerender statically except `/contact` (reads `?topic`). The homepage is the flagship long-scroll gateway; subpages carry the depth.
 
-**Local-only, in `archive/` (gitignored — do not link to any of these from `index.html`):**
+## Conventions
 
-- `archive/intro.md` — source brief describing the actual company (divisions, subsidiaries, revenue, academic partners). Authoritative source for *content* decisions; consult it before changing copy about business structure, revenue figures, or subsidiary names.
-- `archive/mockup/` — design variants (edition-02 through edition-07). Useful as references when iterating on the live page.
-- `archive/Projects/`, `archive/Improvements_web.pdf` — source project PDFs and the improvements brief.
-- `archive/EAGroup_logo.png` — superseded logo.
-- `archive/` also catches stray scratch/temp files.
+- **Design tokens & utilities** live in CSS; reuse `.eyebrow/.h2/.lede/.num/.dropcap` and the `SectionHead`/`Arrow` components rather than re-styling.
+- **Cursor**: add `data-link` + `data-label="…"` to interactive elements so they participate in the custom cursor.
+- **Rail**: any top-level `<section>` should set `data-section` + `data-title` to appear in the rail label.
+- **Logos**: set the optional `logo` field on a `houses`/`pillars`/`partners` entry to swap its monogram for a real asset under `public/logos/`.
+- **Content of record**: `archive/intro.md`, `archive/Improvements_web.pdf` and the project briefs in `archive/Projects/` are the source material; the figures in the live data files (three divisions; investor table totalling $90M) are authoritative. Don't invent names, figures or legal commitments. About/Investor/Legal copy is placeholder pending client/counsel review.
 
-The whole `archive/` directory is gitignored. New shipped assets belong under `assets/` (or the root); new working/scratch files belong under `archive/`.
+## Local-only (`archive/`, gitignored)
 
-## Architecture of `index.html`
-
-Top-to-bottom structure inside one file:
-
-1. **`:root` design tokens** (~lines 14-33) — the entire visual language lives here as CSS custom properties: `--ink`, `--bone`, `--paper`, `--copper`, `--ember`, the three font stacks (`--display` Fraunces, `--sans` Instrument Sans, `--mono` IBM Plex Mono), and layout vars `--max`, `--gutter`, `--rail`. Always edit tokens here rather than hard-coding colors/fonts in component rules.
-2. **Component CSS** — organized by section with `/* ============ NAME ============ */` banners that mirror the markup banners below. Mobile breakpoints are inline at the end of each component, not collected at the bottom. Primary breakpoint is `1000px` (gutter collapse) with a secondary at `1100px` (mobile menu).
-3. **Markup** (~line 889 onward), in this order: `.curtain` intro → custom cursor → rail label → `<nav>` → mobile menu `<aside>` → `<section>`s (`hero`, `pillars`, `houses`, `research`, `investor`, `field-notes`) → CTA → footer.
-4. **Single `<script>` block** (~line 1301) — four IIFEs, in order: curtain controller, custom cursor, sticky rail label, mobile menu. No bundler, no modules.
-
-### Cross-cutting behaviors to know about
-
-- **The curtain** is a full-viewport intro overlay shown on first visit. State is tracked via `sessionStorage.getItem('eac_intro_seen')`. While up, `<body>` has class `curtain-active` (which locks scroll). After auto-rise (2.4s) or skip, the curtain element is removed from the DOM. The "Replay Intro" nav button clears the session flag and reloads. If you add any first-paint animation, gate it on `body.no-curtain` so the timing matches when the curtain was skipped.
-- **Sticky rail label** reads `data-section` and `data-title` from each `<section>` and updates as the user scrolls. Any new top-level section should set both attributes (Roman numeral + title) or it won't participate.
-- **Custom cursor** activates only on `hover: hover` + `pointer: fine` devices. Interactive elements opt in by adding `data-link` and `data-label="…"` — the label text appears in the cursor ring on hover. Add these to any new CTAs/links you want to feel "part of" the design.
-- **Mobile menu** is an overlay `<aside id="mobileMenu">` toggled by `#navToggle`. Links inside need `data-mm-close` so they dismiss the menu on tap. Auto-closes above 1100px viewport.
-
-## Content conventions
-
-- **Brand voice & content of record**: `archive/intro.md` and `archive/Improvements_web.pdf` are the source briefs for subsidiary names, division structure, revenue figures and academic partners; the figures currently rendered in `index.html` (three divisions — Shelter, Natural Biotech, Food — and the investor table totalling $90M) are the live source of truth. Consult both before changing business-structure copy; don't invent or "round" these.
-- **Numerals**: tabular numerals and ordinals use the `.num` class (which applies IBM Plex Mono with the right OpenType features). Use it for metrics, dates, frame numbers, Roman numerals in eyebrows.
-- **Editorial labels**: section eyebrows follow `<Roman>. <Title> <dot> <subtitle>` pattern — match the existing tone (filed/dispatch/frame language) rather than generic web copy.
-
-## Working with mockups
-
-When the user asks to try a different visual direction, prefer copying patterns *from* `archive/mockup/edition-0X.html` *into* `index.html` rather than linking out to mockups or duplicating `index.html`. The mockups are sketches; only `index.html` ships.
+`archive/index-reference.html` (v1 design reference), `archive/intro.md`, `archive/Projects/` (source PDFs), `archive/Improvements_web.pdf`, `archive/mockup/`, plus scratch files. Never imported by the app.
