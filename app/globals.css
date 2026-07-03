@@ -13,7 +13,7 @@
   --hair-light: #D8D1C2;
 
   /* Font stacks — the var(--font-*) values come from next/font in layout.tsx */
-  --display: var(--font-display), "Fraunces", "Times New Roman", serif;
+  --display: var(--font-display), "Newsreader", "Times New Roman", serif;
   --sans: var(--font-sans), "Instrument Sans", -apple-system, sans-serif;
   --mono: var(--font-mono), "IBM Plex Mono", ui-monospace, monospace;
 

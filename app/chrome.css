@@ -53,7 +53,7 @@
 .curtain-name {
   font-family: var(--display);
   font-weight: 400;
-  font-variation-settings: "opsz" 36, "SOFT" 20;
+  font-variation-settings: "opsz" 36;
   font-size: 22px;
   letter-spacing: 0.01em;
   color: var(--ink);
@@ -69,7 +69,7 @@
 .curtain-tagline {
   font-family: var(--display);
   font-weight: 360;
-  font-variation-settings: "opsz" 36, "SOFT" 40, "WONK" 1;
+  font-variation-settings: "opsz" 36;
   font-style: italic;
   font-size: 19px;
   color: var(--slate);
@@ -189,7 +189,7 @@ nav.top .row { display: flex; align-items: center; justify-content: space-betwee
 }
 .wordmark .name {
   font-family: var(--display); font-weight: 400;
-  font-variation-settings: "opsz" 36, "SOFT" 20;
+  font-variation-settings: "opsz" 36;
   font-size: 19px; letter-spacing: 0.01em; line-height: 1;
   white-space: nowrap;
 }
@@ -273,7 +273,7 @@ nav ul a:hover::after, nav ul a.is-active::after { width: 100%; }
 .mm-links li:first-child { border-top: 1px solid var(--hair-light); }
 .mm-links a {
   font-family: var(--display); font-weight: 360;
-  font-variation-settings: "opsz" 72, "SOFT" 30;
+  font-variation-settings: "opsz" 72;
   font-size: clamp(36px, 9vw, 56px); line-height: 1; letter-spacing: -0.02em;
   color: var(--ink); padding: 22px 0; display: block; position: relative;
 }

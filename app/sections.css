@@ -21,17 +21,17 @@
   }
   .display {
     font-family: var(--display); font-weight: 360;
-    font-variation-settings: "opsz" 144, "SOFT" 30;
+    font-variation-settings: "opsz" 72;
     letter-spacing: -0.028em; line-height: 0.98;
   }
   .display .italic {
     font-style: italic;
-    font-variation-settings: "opsz" 144, "SOFT" 60, "WONK" 1;
+    font-variation-settings: "opsz" 72;
     font-weight: 340;
   }
   .h2 {
     font-family: var(--display); font-weight: 360;
-    font-variation-settings: "opsz" 96, "SOFT" 30;
+    font-variation-settings: "opsz" 72;
     letter-spacing: -0.024em; line-height: 1.02;
   }
   .h3 {
@@ -46,7 +46,7 @@
   }
   .dropcap::first-letter {
     font-family: var(--display); font-weight: 360;
-    font-variation-settings: "opsz" 144, "SOFT" 30;
+    font-variation-settings: "opsz" 72;
     font-size: 5.4em; line-height: 0.86;
     float: left; padding: 8px 14px 0 0; color: var(--ember);
     letter-spacing: -0.04em;
@@ -226,7 +226,7 @@
   }
   .maison .name em {
     font-style: italic; color: var(--copper);
-    font-variation-settings: "opsz" 36, "SOFT" 60, "WONK" 1;
+    font-variation-settings: "opsz" 36;
   }
   .maison .desc { font-size: 14px; line-height: 1.6; color: var(--hair-light); flex: 1; margin-bottom: 24px; }
   .maison .brands {
@@ -521,7 +521,7 @@
   }
   .mark .letters {
     font-family: var(--display); font-weight: 360;
-    font-variation-settings: "opsz" 24, "SOFT" 30;
+    font-variation-settings: "opsz" 24;
     font-size: 26px; line-height: 1; letter-spacing: -0.02em;
     color: var(--bone); font-feature-settings: "ss01";
   }
@@ -560,7 +560,7 @@
   }
   .maisons-pillar-band .pb-name {
     font-family: var(--display); font-weight: 360;
-    font-variation-settings: "opsz" 60, "SOFT" 40;
+    font-variation-settings: "opsz" 60;
     font-size: clamp(22px, 2.4vw, 32px); color: var(--bone);
     line-height: 1.1; letter-spacing: -0.012em;
     flex: 1; min-width: 200px;
@@ -610,7 +610,7 @@
   }
   .project-card .pc-title {
     font-family: var(--display); font-weight: 360;
-    font-variation-settings: "opsz" 60, "SOFT" 30;
+    font-variation-settings: "opsz" 60;
     font-size: clamp(24px, 2.4vw, 34px); line-height: 1.12;
     letter-spacing: -0.014em; color: var(--ink);
     margin-top: 6px;
@@ -670,7 +670,7 @@
   .partner-cell .pc-info { display: flex; flex-direction: column; gap: 3px; }
   .partner-cell .pc-info .name {
     font-family: var(--display); font-size: 18px;
-    font-variation-settings: "opsz" 36, "SOFT" 30;
+    font-variation-settings: "opsz" 36;
     letter-spacing: -0.01em; color: var(--ink); line-height: 1;
   }
   .partner-cell .pc-info .name em { font-style: italic; color: var(--ember); }
@@ -863,7 +863,7 @@
   .pp-cta .pc-info .kind { color: var(--ember); }
   .pp-card .pc-info { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
   .pp-card .pc-info .name {
-    font-family: var(--display); font-weight: 400; font-variation-settings: "opsz" 28, "SOFT" 20;
+    font-family: var(--display); font-weight: 400; font-variation-settings: "opsz" 28;
     font-size: 19px; line-height: 1.1; color: var(--ink);
   }
   .pp-card .pc-info .name em { font-style: italic; color: var(--ember); }

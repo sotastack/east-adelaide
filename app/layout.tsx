@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Fraunces, Instrument_Sans, IBM_Plex_Mono } from "next/font/google";
+import { Newsreader, Instrument_Sans, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import "./chrome.css";
 import "./sections.css";
@@ -10,11 +10,11 @@ import { Nav } from "@/components/chrome/Nav";
 import { RailLabel } from "@/components/chrome/RailLabel";
 import { Footer } from "@/components/chrome/Footer";
 
-const fraunces = Fraunces({
+const newsreader = Newsreader({
   subsets: ["latin"],
   display: "swap",
   style: ["normal", "italic"],
-  axes: ["opsz", "SOFT", "WONK"],
+  axes: ["opsz"],
   variable: "--font-display",
 });
 
@@ -67,7 +67,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${fraunces.variable} ${instrumentSans.variable} ${ibmPlexMono.variable}`}
+      className={`${newsreader.variable} ${instrumentSans.variable} ${ibmPlexMono.variable}`}
     >
       <body>
         <ChromeProvider>
