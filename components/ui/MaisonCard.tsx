@@ -22,8 +22,8 @@ export function Mark({ mark }: { mark: string }) {
 }
 
 export function MaisonCard({ house }: { house: House }) {
-  return (
-    <div className="maison" data-link data-label="Open House">
+  const content = (
+    <>
       <div className="mark-row">
         {house.logo ? (
           <div className="house-logo">
@@ -50,6 +50,27 @@ export function MaisonCard({ house }: { house: House }) {
       <div className="arrow-wrap">
         <Arrow />
       </div>
+    </>
+  );
+
+  if (house.website) {
+    return (
+      <a
+        className="maison"
+        href={house.website}
+        target="_blank"
+        rel="noopener noreferrer"
+        data-link
+        data-label="Visit Site"
+      >
+        {content}
+      </a>
+    );
+  }
+
+  return (
+    <div className="maison" data-link data-label="Open House">
+      {content}
     </div>
   );
 }

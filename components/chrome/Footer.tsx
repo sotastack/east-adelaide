@@ -1,14 +1,14 @@
 import Link from "next/link";
 import { ReplayLink } from "./ReplayLink";
 
-const houses = [
-  "Tidy Tend Global",
-  "Advanced Cladding Systems",
-  "Procon Material",
-  "Promod Building Group",
-  "Advance Building Solutions",
-  "Natural Biotech Pty Ltd",
-  "The Little Shell Catering",
+const houses: { label: string; website?: string }[] = [
+  { label: "Tidy Tend Global" },
+  { label: "Advanced Cladding Systems" },
+  { label: "Procon Material" },
+  { label: "Promod Building Group" },
+  { label: "Advance Building Solutions" },
+  { label: "Natural Biotech Pty Ltd" },
+  { label: "The Little Shell Catering", website: "https://littleshell.com.au" },
 ];
 
 const group = [
@@ -85,10 +85,22 @@ export function Footer() {
             <h4>Houses</h4>
             <ul>
               {houses.map((h) => (
-                <li key={h}>
-                  <Link href="/divisions" data-link data-label="Open">
-                    {h}
-                  </Link>
+                <li key={h.label}>
+                  {h.website ? (
+                    <a
+                      href={h.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      data-link
+                      data-label="Visit"
+                    >
+                      {h.label}
+                    </a>
+                  ) : (
+                    <Link href="/divisions" data-link data-label="Open">
+                      {h.label}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>

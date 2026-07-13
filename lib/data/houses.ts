@@ -7,6 +7,8 @@ export interface House {
   logo?: string;
   /** optional display height for the logo (e.g. "54px"); emblems read larger than wordmarks */
   logoH?: string;
+  /** optional external site; makes the house card link out */
+  website?: string;
   name: string;
   em: string;
   desc: string;
@@ -110,6 +112,7 @@ export const houseBands: HouseBand[] = [
         mark: "LS",
         logo: "/logos/littleshell-cut.png",
         logoH: "52px",
+        website: "https://littleshell.com.au",
         name: "The Little Shell",
         em: "Catering",
         desc: "Food import and export, seafood supply chain, food logistics, restaurant supply, central kitchen support and catering — the group's full food platform.",
