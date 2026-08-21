@@ -62,8 +62,8 @@ export function Footer() {
               <br />
               Unit A6, 2A Westall Road, Clayton, Victoria 3168
               <br />
-              <a href="tel:+61386141711" data-link data-label="Call">
-                03 8614 1711
+              <a href="tel:+61398734450" data-link data-label="Call">
+                03 9873 4450
               </a>
             </div>
           </div>
